@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BDPFMA.Models.qryMcs>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table"
+       id="table" 
+       data-toggle="table" 
+       data-sort-class="table-active" 
+       data-sortable="true"
+       data-show-columns="true"
+       data-filter-control="true"
+       data-show-search-clear-button="true"
+       data-filter-control-multiple-search="true"
+       data-locale="hu-HU">
+
+    <thead>
+        <tr>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="AreaName">
+                Terület Neve
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="CellNoName">
+                Cella
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="McName">
+                Gép
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellNoName)
+            </td>
+            <td >
+                @Html.DisplayFor(modelItem => item.McName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.McId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.McId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.McId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('#table').bootstrapTable()
+    })
+</script>

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BDPFMA</title>
+    <link href="~/lib/bootstrap-table/src/extensions/filter-control/bootstrap-table-filter-control.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BDPFMA</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="BdpfAreas" asp-action="Index">Területek</a>
+                                <a class="dropdown-item" asp-controller="BdpfCells" asp-action="Index">Cellák</a>
+                                <a class="dropdown-item" asp-controller="qryMcs" asp-action="Index">Gépek</a>
+                                <a class="dropdown-item" asp-controller="qryMcUnits" asp-action="Index">Gépegységek</a>
+                                <a class="dropdown-item" asp-controller="qryMcSubUnits" asp-action="Index">Gép Alegységek</a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - BDPFMA -  
+            @{
+                string userid = System.Security.Principal.WindowsIdentity.GetCurrent().Name; 
+            }
+            <label class="text-end" id="userID">@userid</label>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script type="module" src="~/lib/bootstrap-table/src/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+    
+    <script src="~/lib/tableexport.jquery.plugin/tableexport.min.js"></script>
+    <script src="~/lib/tableexport.jquery.plugin/libs/jspdf/jspdf.umd.min.js"></script> 
+    <script src="~/lib/tableexport.jquery.plugin/libs/js-xlsx/xlsx.core.min.js"></script>
+
+    <script type="module" src="~/lib/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        var $table = $('#table')
+
+        $(function () {
+            $('#toolbar').find('select').change(function () {
+                $table.bootstrapTable('destroy').bootstrapTable({
+                    exportDataType: $(this).val(),
+                    exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf']
+                })
+            }).trigger('change')
+        })
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

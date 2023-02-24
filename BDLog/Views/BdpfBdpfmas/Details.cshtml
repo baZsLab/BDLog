@@ -1,0 +1,156 @@
+﻿@model BDPFMA.Models.BdpfBdpfma
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BdpfBdpfma</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdStartdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdStartdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdStopdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdStopdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdM2p)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdM2p)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdPart)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdPart)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdCost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdCost)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdFaultdesc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdFaultdesc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdContmeas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdContmeas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdContmeasdesc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdContmeasdesc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdPaperok)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdPaperok)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdAnalysis)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdAnalysis)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdStandard)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdStandard)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdAddinfo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdAddinfo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdRepeat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdRepeat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdIdaneed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdIdaneed)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdContNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdContNavigation.ContCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdCuzNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdCuzNavigation.CuzCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdDmgNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdDmgNavigation.DmgCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdEmNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdEmNavigation.BdpfName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdFaultNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdFaultNavigation.FaultName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdMaintNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdMaintNavigation.MaintName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdOpNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdOpNavigation.OpName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BdSubNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BdSubNavigation.SubName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BdId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

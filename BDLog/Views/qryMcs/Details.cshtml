@@ -1,0 +1,39 @@
+﻿@model BDPFMA.Models.qryMcs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BdpfMc</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Terület Neve
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AreaName)
+        </dd>
+
+        <dt class="col-sm-2">
+            Cella Neve
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CellNoName)
+        </dd>
+
+        <dt class = "col-sm-2">
+            Gép neve
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.McName)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.McId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

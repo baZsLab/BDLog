@@ -1,0 +1,144 @@
+﻿@model BDPFMA.Models.BdpfBdpfma
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>BdpfBdpfma</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BdId" />
+            <div class="form-group">
+                <label asp-for="BdSub" class="control-label"></label>
+                <select asp-for="BdSub" class="form-control" asp-items="ViewBag.BdSub"></select>
+                <span asp-validation-for="BdSub" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdStartdate" class="control-label"></label>
+                <input asp-for="BdStartdate" class="form-control" />
+                <span asp-validation-for="BdStartdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdStopdate" class="control-label"></label>
+                <input asp-for="BdStopdate" class="form-control" />
+                <span asp-validation-for="BdStopdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdFault" class="control-label"></label>
+                <select asp-for="BdFault" class="form-control" asp-items="ViewBag.BdFault"></select>
+                <span asp-validation-for="BdFault" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdOp" class="control-label"></label>
+                <select asp-for="BdOp" class="form-control" asp-items="ViewBag.BdOp"></select>
+                <span asp-validation-for="BdOp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdMaint" class="control-label"></label>
+                <select asp-for="BdMaint" class="form-control" asp-items="ViewBag.BdMaint"></select>
+                <span asp-validation-for="BdMaint" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdEm" class="control-label"></label>
+                <select asp-for="BdEm" class="form-control" asp-items="ViewBag.BdEm"></select>
+                <span asp-validation-for="BdEm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdM2p" class="control-label"></label>
+                <input asp-for="BdM2p" class="form-control" />
+                <span asp-validation-for="BdM2p" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdTime" class="control-label"></label>
+                <input asp-for="BdTime" class="form-control" />
+                <span asp-validation-for="BdTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdDmg" class="control-label"></label>
+                <select asp-for="BdDmg" class="form-control" asp-items="ViewBag.BdDmg"></select>
+                <span asp-validation-for="BdDmg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdCuz" class="control-label"></label>
+                <select asp-for="BdCuz" class="form-control" asp-items="ViewBag.BdCuz"></select>
+                <span asp-validation-for="BdCuz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdCont" class="control-label"></label>
+                <select asp-for="BdCont" class="form-control" asp-items="ViewBag.BdCont"></select>
+                <span asp-validation-for="BdCont" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdPart" class="control-label"></label>
+                <input asp-for="BdPart" class="form-control" />
+                <span asp-validation-for="BdPart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdCost" class="control-label"></label>
+                <input asp-for="BdCost" class="form-control" />
+                <span asp-validation-for="BdCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdFaultdesc" class="control-label"></label>
+                <input asp-for="BdFaultdesc" class="form-control" />
+                <span asp-validation-for="BdFaultdesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdContmeas" class="control-label"></label>
+                <input asp-for="BdContmeas" class="form-control" />
+                <span asp-validation-for="BdContmeas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdContmeasdesc" class="control-label"></label>
+                <input asp-for="BdContmeasdesc" class="form-control" />
+                <span asp-validation-for="BdContmeasdesc" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BdPaperok" /> @Html.DisplayNameFor(model => model.BdPaperok)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BdAnalysis" /> @Html.DisplayNameFor(model => model.BdAnalysis)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BdStandard" /> @Html.DisplayNameFor(model => model.BdStandard)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdAddinfo" class="control-label"></label>
+                <input asp-for="BdAddinfo" class="form-control" />
+                <span asp-validation-for="BdAddinfo" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BdRepeat" /> @Html.DisplayNameFor(model => model.BdRepeat)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BdIdaneed" /> @Html.DisplayNameFor(model => model.BdIdaneed)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

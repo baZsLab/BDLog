@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap@5.2.3",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "popper.js@2.11.6",
+      "destination": "wwwroot/lib/popper.js/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "bootstrap-table@1.21.2",
+      "destination": "wwwroot/lib/bootstrap-table/"
+    },
+    {
+      "library": "bootstrap-icons@1.10.3",
+      "destination": "wwwroot/lib/bootstrap-icons/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "tableexport.jquery.plugin@1.26.0",
+      "destination": "wwwroot/lib/tableexport.jquery.plugin/"
+    }
+  ]
+}

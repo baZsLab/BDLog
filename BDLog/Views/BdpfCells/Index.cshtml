@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BDPFMA.Models.BdpfCell>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CellName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CellNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CellAreaNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellAreaNavigation.AreaName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CellId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CellId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CellId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

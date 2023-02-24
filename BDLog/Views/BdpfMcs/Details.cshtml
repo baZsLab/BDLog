@@ -1,0 +1,30 @@
+﻿@model BDPFMA.Models.BdpfMc
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BdpfMc</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.McName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.McName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.McCellNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.McCellNavigation.CellName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.McId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

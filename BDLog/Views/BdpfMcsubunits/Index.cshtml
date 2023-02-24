@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BDPFMA.Models.BdpfMcsubunit>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubSap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubMcunitNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubSap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubMcunitNavigation.UnitName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SubId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SubId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SubId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

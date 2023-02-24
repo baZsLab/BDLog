@@ -1,0 +1,170 @@
+﻿@model IEnumerable<BDPFMA.Models.qryMcSubUnit>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gép Alegységek</h1>
+
+<p>
+    <a asp-action="Create">Új Alegység</a>
+</p>
+
+<style>
+  .captop {
+    caption-side: top;
+    padding: 0;
+  }
+  .month {
+    padding: 1rem;
+    background: #6e69f5;
+    text-align: center;
+  }
+  .month ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  .month .prev {
+    float: left;
+    padding-top: 10px;
+  }
+  .month .next {
+    float: right;
+    padding-top: 10px;
+  }
+  #table>tbody>tr>td {
+    padding: 0;
+  }
+  #table .card,
+  #table .card-header {
+    border: 0;
+    border-radius: 0;
+  }
+  #table .active .card-header {
+    background: #6e69f5;
+  }
+  
+  
+  @@media (max-width: 768px) {
+    #table .card {
+      padding: 0;
+    }
+    .month,
+    .table td, .table th,
+    #table .card-header {
+      padding: 4px;
+    }
+    .card-body {
+      padding: 4px !important;
+    }
+    .month ul li,
+    .table td, .table th,
+    .h4.card-text.calendar-info {
+      font-size: 10px;
+    }
+    .month ul li span {
+      font-size: 10px !important;
+    }
+  }
+</style>
+
+<div class="table-responsive text-nowrap">
+<table class="table"
+       id="table"
+       data-show-export="true"
+       data-toggle="table" 
+       data-sort-class="table-active" 
+       data-sortable="true"
+       data-show-columns="true"
+       data-filter-control="true"
+       data-show-search-clear-button="true"
+       data-filter-control-multiple-search="true"
+       data-locale="hu-HU">
+
+    <thead>
+        <tr>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="AreaName">
+                Terület Neve
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="CellNoName">
+                Cella
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="McName">
+                Gép
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="UnitName">
+                Gépegyég
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="UnitSap">
+                Gépegység kód
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="SubName">
+                Alegység
+            </th>
+            <th data-sortable="true"
+                data-filter-control="input"
+                data-field="SubSap">
+                Alegység kód
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellNoName)
+            </td>
+            <td >
+                @Html.DisplayFor(modelItem => item.McName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unitName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unitSAP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subSAP)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.subID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.subID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.subID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('#table').bootstrapTable()
+    })
+</script>

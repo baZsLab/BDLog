@@ -1,0 +1,167 @@
+﻿@model IEnumerable<BDPFMA.Models.BdpfBdpfma>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BdStartdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdStopdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdM2p)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdPart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdFaultdesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdContmeas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdContmeasdesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdPaperok)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdAnalysis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdStandard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdAddinfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdRepeat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdIdaneed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdContNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdCuzNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdDmgNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdEmNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdFaultNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdMaintNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdOpNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdSubNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdStartdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdStopdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdM2p)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdPart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdFaultdesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdContmeas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdContmeasdesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdPaperok)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdAnalysis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdStandard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdAddinfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdRepeat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdIdaneed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdContNavigation.ContCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdCuzNavigation.CuzCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdDmgNavigation.DmgCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdEmNavigation.BdpfName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdFaultNavigation.FaultName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdMaintNavigation.MaintName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdOpNavigation.OpName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdSubNavigation.SubName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BdId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BdId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BdId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

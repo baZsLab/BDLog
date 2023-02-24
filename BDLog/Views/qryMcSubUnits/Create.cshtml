@@ -1,0 +1,70 @@
+﻿@model BDPFMA.Models.BdpfMcsubunit
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Új Alegység hozzáadása</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label>Terület</label>
+                <select class="form-control" id="drpArea">
+                    <option>--Válassz területet--</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label">Cella</label>
+                <select id="drpCell" class="form-control">
+                    <option>--Válassz cellát--</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label">Gép</label>
+                <select id="drpMc"  class="form-control">
+                    <option>--Válassz gépet--</option>
+                </select>
+           </div>
+
+            <div class="form-group">
+                <label class="control-label">Gépegység</label>
+                <select id="drpUnit" asp-for="SubMcunit" class="form-control">
+                    <option>--Válassz gépegységet--</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Alegység neve</label>
+                <input asp-for="SubName" class="form-control" />
+                <span asp-validation-for="SubName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Alegység kód</label>
+                <input asp-for="SubSap" class="form-control" />
+                <span asp-validation-for="SubSap" class="text-danger"></span>
+            </div>
+           <div class="form-group">
+                <input type="submit" value="Létrehozás" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vissza a listához</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/unitcreatecascade.js"></script>
