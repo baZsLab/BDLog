@@ -1,6 +1,6 @@
 using System;
 
-namespace BDPFMA.Models
+namespace BDELog.Models
 {
     public class ErrorViewModel
     {

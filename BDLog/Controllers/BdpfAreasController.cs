@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BDPFMA.Contexts;
-using BDPFMA.Models;
+using BDELog.Contexts;
+using BDELog.Models;
 
-namespace BDPFMA.Controllers
+namespace BDELog.Controllers
 {
     public class BdpfAreasController : Controller
     {

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace BDPFMA.Models
+namespace BDELog.Models
 {
     [Table("BDPF_OP")]
     public partial class BdpfOp

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BDPFMA.Contexts;
-using BDPFMA.Models;
+using BDELog.Contexts;
+using BDELog.Models;
 
-namespace BDPFMA.BIControllers
+namespace BDELog.BIControllers
 {
     [Route("api/[controller]")]
     [ApiController]

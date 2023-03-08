@@ -1,7 +1,7 @@
-﻿using BDPFMA.Contexts;
+﻿using BDELog.Contexts;
 using System.Collections.Generic;
 
-namespace BDPFMA.Models
+namespace BDELog.Models
 {
     public class qryMcUnit
     {

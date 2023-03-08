@@ -1,6 +1,6 @@
-﻿using BDPFMA.Contexts;
-using BDPFMA.Models;
-using BDPFMA.Repo;
+﻿using BDELog.Contexts;
+using BDELog.Models;
+using BDELog.Repo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,46 +10,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BDPFMA.Controllers
+namespace BDELog.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly BD_Context _context;
-        private readonly Auth_Context _authcontext;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-
-        public HomeController(BD_Context context, ILogger<HomeController> logger, UserManager<IdentityUser> userManager,
-                              SignInManager<IdentityUser> signInManager, Auth_Context authcontext)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public HomeController(BD_Context context, ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
             _context = context;
-
-            _authcontext = authcontext;
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
-        public IActionResult Login()
-        {
-            
-            
-            var user = _authcontext.BdpfUsernames.SingleOrDefault(u => u.UserName == "testuser02");
-            
-            if (user == null)
-            {
-                user = new BdpfUsername { UserName = "testuser02", UserRole = 1 };
-                _authcontext.BdpfUsernames.Add(user);
-                _authcontext.SaveChanges();
-
-            }
-
-            return Redirect("/Home/Index");
-        }
-
-
-
 
         public JsonResult GetAreaDrp()
         {
@@ -78,8 +53,18 @@ namespace BDPFMA.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            if (_signInManager.IsSignedIn(User))
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("Account/Index");
+            }
+                
         }
+
+
 
         public IActionResult Privacy()
         {

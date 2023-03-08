@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using BDPFMA.Models;
+using BDELog.Models;
 
 #nullable disable
 
-namespace BDPFMA.Contexts
+namespace BDELog.Contexts
 {
     public partial class BD_Context : DbContext
     {

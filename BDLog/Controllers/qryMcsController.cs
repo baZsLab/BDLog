@@ -1,6 +1,6 @@
-﻿using BDPFMA.Contexts;
-using BDPFMA.Models;
-using BDPFMA.Repo;
+﻿using BDELog.Contexts;
+using BDELog.Models;
+using BDELog.Repo;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,7 +9,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BDPFMA.Controllers
+namespace BDELog.Controllers
 {
     public class qryMcsController : Controller
 

@@ -1,4 +1,4 @@
-using BDPFMA.Contexts;
+using BDELog.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace BDPFMA
+namespace BDELog
 {
     public class Startup
     {
@@ -28,12 +28,17 @@ namespace BDPFMA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
             services.AddDbContext<BD_Context>(options => options.UseOracle(Configuration.GetConnectionString("BDPF_DB")));
             services.AddDbContext<Auth_Context>(options => options.UseOracle(Configuration.GetConnectionString("BDPF_DB")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Auth_Context>()
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<Auth_Context>()
                 .AddDefaultTokenProviders();
+                
+                        
+
 
             services.AddSwaggerGen(c=>
                 {
@@ -61,6 +66,7 @@ namespace BDPFMA
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -68,6 +74,7 @@ namespace BDPFMA
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

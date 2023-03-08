@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BDPFMA.Contexts;
-using BDPFMA.Models;
-using BDPFMA.Repo;
+using BDELog.Contexts;
+using BDELog.Models;
+using BDELog.Repo;
 
-namespace BDPFMA.Controllers
+namespace BDELog.Controllers
 {
     public class qryMcSubUnitsController : Controller
     {

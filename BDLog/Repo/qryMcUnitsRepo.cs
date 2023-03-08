@@ -1,10 +1,10 @@
-﻿using BDPFMA.Contexts;
-using BDPFMA.Models;
+﻿using BDELog.Contexts;
+using BDELog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BDPFMA.Repo
+namespace BDELog.Repo
 {
     public class qryMcUnitsRepo
     {
