@@ -118,6 +118,7 @@
                         {
                             paperstr = "paperno" + item.Value;
                             @Html.RadioButtonFor(Model=>Model.BdPaperok,item.Value, new{id=paperstr, @class="btn-check" } )
+                            
                             <label class="btn btn-outline-secondary"
                                for="@paperstr">
                                 @item.Text

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -22,9 +23,6 @@
                 @Html.DisplayNameFor(model => model.BdM2p)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BdTime)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.BdPart)
             </th>
             <th>
@@ -34,17 +32,9 @@
                 @Html.DisplayNameFor(model => model.BdFaultdesc)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BdContmeas)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.BdContmeasdesc)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BdPaperok)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BdAnalysis)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.BdStandard)
             </th>
@@ -52,13 +42,28 @@
                 @Html.DisplayNameFor(model => model.BdAddinfo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BdRepeat)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.BdIdaneed)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.BdCreateddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdModifieddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdInactive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdRepeat)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.BdContNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdContmeasNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdCreatedbyNavigation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BdCuzNavigation)
@@ -76,7 +81,13 @@
                 @Html.DisplayNameFor(model => model.BdMaintNavigation)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.BdModifiedbyNavigation)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.BdOpNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BdPaperokNavigation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BdSubNavigation)
@@ -97,9 +108,6 @@
                 @Html.DisplayFor(modelItem => item.BdM2p)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BdTime)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.BdPart)
             </td>
             <td>
@@ -109,17 +117,9 @@
                 @Html.DisplayFor(modelItem => item.BdFaultdesc)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BdContmeas)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.BdContmeasdesc)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BdPaperok)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BdAnalysis)
-            </td>
+ 
             <td>
                 @Html.DisplayFor(modelItem => item.BdStandard)
             </td>
@@ -127,13 +127,28 @@
                 @Html.DisplayFor(modelItem => item.BdAddinfo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BdRepeat)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.BdIdaneed)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.BdCreateddate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdModifieddate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdInactive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdRepeat)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.BdContNavigation.ContCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdContmeasNavigation.ContmeasName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdCreatedbyNavigation.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BdCuzNavigation.CuzCode)
@@ -151,7 +166,13 @@
                 @Html.DisplayFor(modelItem => item.BdMaintNavigation.MaintName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.BdModifiedbyNavigation.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.BdOpNavigation.OpName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BdPaperokNavigation.PaperName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BdSubNavigation.SubName)

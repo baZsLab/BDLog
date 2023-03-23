@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using BDELog.Contexts;
 using BDELog.Models;
 using BDELog.Repo;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace BDELog.Controllers
 {
+    [Authorize]
     public class qryMcSubUnitsController : Controller
     {
         private readonly BD_Context _context;
@@ -48,6 +51,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfMcsubunits/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["SubMcunit"] = new SelectList(_context.BdpfMcunits, "UnitId", "UnitName");
@@ -72,6 +76,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfMcsubunits/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -125,6 +130,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfMcsubunits/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

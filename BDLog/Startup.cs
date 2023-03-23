@@ -33,11 +33,16 @@ namespace BDELog
             services.AddDbContext<BD_Context>(options => options.UseOracle(Configuration.GetConnectionString("BDPF_DB")));
             services.AddDbContext<Auth_Context>(options => options.UseOracle(Configuration.GetConnectionString("BDPF_DB")));
 
+            //services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>>();
+
+
+
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<Auth_Context>()
-                .AddDefaultTokenProviders();
-                
-                        
+                .AddDefaultTokenProviders()
+                .AddRoles<IdentityRole<int>>()
+                .AddEntityFrameworkStores<Auth_Context>();
+
+
 
 
             services.AddSwaggerGen(c=>

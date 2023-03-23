@@ -51,6 +51,13 @@ namespace BDELog.Controllers
             var units_result = units_result_part.OrderBy(e => e.UnitName).ToList();
             return new JsonResult(units_result);
         }
+
+        public JsonResult GetMcSubDrp(int id)
+        {
+            var subs_result_part = _context.BdpfMcsubunits.Where(e => e.SubMcunit == id);
+            var sub_result = subs_result_part.OrderBy(e => e.SubName).ToList();
+            return new JsonResult(sub_result);
+        }
         public IActionResult Index()
         {
             if (_signInManager.IsSignedIn(User))

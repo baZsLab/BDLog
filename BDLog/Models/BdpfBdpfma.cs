@@ -36,8 +36,6 @@ namespace BDELog.Models
         [Column("BD_M2P")]
         [StringLength(20)]
         public string BdM2p { get; set; }
-        [Column("BD_TIME")]
-        public int BdTime { get; set; }
         [Column("BD_DMG")]
         public int BdDmg { get; set; }
         [Column("BD_CUZ")]
@@ -50,25 +48,20 @@ namespace BDELog.Models
         [Column("BD_COST")]
         public long? BdCost { get; set; }
         [Column("BD_FAULTDESC")]
-        [StringLength(100)]
+        [StringLength(200)]
         public string BdFaultdesc { get; set; }
         [Column("BD_CONTMEAS")]
-        public bool? BdContmeas { get; set; }
+        public int BdContmeas { get; set; }
         [Column("BD_CONTMEASDESC")]
-        [StringLength(100)]
+        [StringLength(200)]
         public string BdContmeasdesc { get; set; }
         [Column("BD_PAPEROK")]
-        public bool BdPaperok { get; set; }
-        [Column("BD_ANALYSIS")]
-        public bool BdAnalysis { get; set; }
+        public int BdPaperok { get; set; }
         [Column("BD_STANDARD")]
         public bool BdStandard { get; set; }
-        [Required]
         [Column("BD_ADDINFO")]
-        [StringLength(100)]
+        [StringLength(200)]
         public string BdAddinfo { get; set; }
-        [Column("BD_REPEAT")]
-        public bool BdRepeat { get; set; }
         [Column("BD_IDANEED")]
         public bool BdIdaneed { get; set; }
         [Column("BD_CREATEDBY")]
@@ -80,11 +73,19 @@ namespace BDELog.Models
         [Column("BD_MODIFIEDDATE", TypeName = "DATE")]
         public DateTime? BdModifieddate { get; set; }
         [Column("BD_INACTIVE")]
-        public bool? BdInactive { get; set; }
+        public bool BdInactive { get; set; }
+        [Column("BD_REPEAT")]
+        public bool BdRepeat { get; set; }
 
         [ForeignKey(nameof(BdCont))]
         [InverseProperty(nameof(BdpfContmeasurecode.BdpfBdpfmas))]
         public virtual BdpfContmeasurecode BdContNavigation { get; set; }
+        [ForeignKey(nameof(BdContmeas))]
+        [InverseProperty(nameof(BdpfContmea.BdpfBdpfmas))]
+        public virtual BdpfContmea BdContmeasNavigation { get; set; }
+        [ForeignKey(nameof(BdCreatedby))]
+        [InverseProperty(nameof(UsrUser.BdpfBdpfmaBdCreatedbyNavigations))]
+        public virtual UsrUser BdCreatedbyNavigation { get; set; }
         [ForeignKey(nameof(BdCuz))]
         [InverseProperty(nameof(BdpfCausecode.BdpfBdpfmas))]
         public virtual BdpfCausecode BdCuzNavigation { get; set; }
@@ -100,9 +101,15 @@ namespace BDELog.Models
         [ForeignKey(nameof(BdMaint))]
         [InverseProperty(nameof(BdpfMaint.BdpfBdpfmas))]
         public virtual BdpfMaint BdMaintNavigation { get; set; }
+        [ForeignKey(nameof(BdModifiedby))]
+        [InverseProperty(nameof(UsrUser.BdpfBdpfmaBdModifiedbyNavigations))]
+        public virtual UsrUser BdModifiedbyNavigation { get; set; }
         [ForeignKey(nameof(BdOp))]
         [InverseProperty(nameof(BdpfOp.BdpfBdpfmas))]
         public virtual BdpfOp BdOpNavigation { get; set; }
+        [ForeignKey(nameof(BdPaperok))]
+        [InverseProperty(nameof(BdpfPaper.BdpfBdpfmas))]
+        public virtual BdpfPaper BdPaperokNavigation { get; set; }
         [ForeignKey(nameof(BdSub))]
         [InverseProperty(nameof(BdpfMcsubunit.BdpfBdpfmas))]
         public virtual BdpfMcsubunit BdSubNavigation { get; set; }

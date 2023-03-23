@@ -43,6 +43,9 @@
                                 <a class="dropdown-item" asp-controller="qryMcSubUnits" asp-action="Index">Gép Alegységek</a>
 
                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-controller="AccountRole" asp-action="Index">Jogkörök</a>
+
+
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
@@ -59,13 +62,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="background-color: #4D4D4D">
         <div class="container">
-            &copy; 2023 - BDE Log -  
-            @{
-                string userid = System.Security.Principal.WindowsIdentity.GetCurrent().Name; 
-            }
-            <label class="text-end" id="userID">@userid</label>
+            &copy; 2023 - BreakDown Elimination Log
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

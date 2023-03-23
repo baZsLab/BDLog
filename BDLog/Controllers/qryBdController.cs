@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BDELog.Contexts;
 using BDELog.Models;
+using BDELog.Repo;
 
 namespace BDELog.Controllers
 {
-    public class BdpfBdpfmasController : Controller
+    public class qryBdController : Controller
     {
         private readonly BD_Context _context;
 
-        public BdpfBdpfmasController(BD_Context context)
+        public qryBdController(BD_Context context)
         {
             _context = context;
         }
@@ -22,8 +23,9 @@ namespace BDELog.Controllers
         // GET: BdpfBdpfmas
         public async Task<IActionResult> Index()
         {
-            var bD_Context = _context.BdpfBdpfmas.Include(b => b.BdContNavigation).Include(b => b.BdContmeasNavigation).Include(b => b.BdCreatedbyNavigation).Include(b => b.BdCuzNavigation).Include(b => b.BdDmgNavigation).Include(b => b.BdEmNavigation).Include(b => b.BdFaultNavigation).Include(b => b.BdMaintNavigation).Include(b => b.BdModifiedbyNavigation).Include(b => b.BdOpNavigation).Include(b => b.BdPaperokNavigation).Include(b => b.BdSubNavigation);
-            return View(await bD_Context.ToListAsync());
+            var bdRepository = new qryBDRepo(_context);
+            var bds = bdRepository.GetBD().OrderByDescending(m=>m.BdCreateddate).ToList();
+            return View(bds);
         }
 
         // GET: BdpfBdpfmas/Details/5

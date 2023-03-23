@@ -20,8 +20,10 @@ namespace BDELog.Contexts
 
         public virtual DbSet<BdpfArea> BdpfAreas { get; set; }
         public virtual DbSet<BdpfBdpfma> BdpfBdpfmas { get; set; }
+        public virtual DbSet<BdpfBlog> BdpfBlogs { get; set; }
         public virtual DbSet<BdpfCausecode> BdpfCausecodes { get; set; }
         public virtual DbSet<BdpfCell> BdpfCells { get; set; }
+        public virtual DbSet<BdpfContmea> BdpfContmeas { get; set; }
         public virtual DbSet<BdpfContmeasurecode> BdpfContmeasurecodes { get; set; }
         public virtual DbSet<BdpfDamagecode> BdpfDamagecodes { get; set; }
         public virtual DbSet<BdpfEm> BdpfEms { get; set; }
@@ -32,12 +34,22 @@ namespace BDELog.Contexts
         public virtual DbSet<BdpfMcsubunit> BdpfMcsubunits { get; set; }
         public virtual DbSet<BdpfMcunit> BdpfMcunits { get; set; }
         public virtual DbSet<BdpfOp> BdpfOps { get; set; }
-        public virtual DbSet<BdpfUsername> BdpfUsernames { get; set; }
-        public virtual DbSet<BdpfUserrole> BdpfUserroles { get; set; }
+        public virtual DbSet<BdpfPaper> BdpfPapers { get; set; }
+        public virtual DbSet<UsrRole> UsrRoles { get; set; }
+        public virtual DbSet<UsrRoleclaim> UsrRoleclaims { get; set; }
+        public virtual DbSet<UsrUser> UsrUsers { get; set; }
+        public virtual DbSet<UsrUserclaim> UsrUserclaims { get; set; }
+        public virtual DbSet<UsrUserlogin> UsrUserlogins { get; set; }
+        public virtual DbSet<UsrUserrole> UsrUserroles { get; set; }
+        public virtual DbSet<UsrUsertoken> UsrUsertokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseOracle("User Id=TESTDB;Password=ABC;Data Source=localhost:1521/orcl;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -66,17 +78,15 @@ namespace BDELog.Contexts
 
                 entity.Property(e => e.BdAddinfo).IsUnicode(false);
 
-                entity.Property(e => e.BdAnalysis).HasPrecision(1);
-
                 entity.Property(e => e.BdCont).HasPrecision(9);
 
-                entity.Property(e => e.BdContmeas).HasPrecision(1);
+                entity.Property(e => e.BdContmeas).HasPrecision(9);
 
                 entity.Property(e => e.BdContmeasdesc).IsUnicode(false);
 
                 entity.Property(e => e.BdCost).HasPrecision(18);
 
-                entity.Property(e => e.BdCreatedby).HasPrecision(9);
+                entity.Property(e => e.BdCreatedby).HasPrecision(10);
 
                 entity.Property(e => e.BdCuz).HasPrecision(9);
 
@@ -96,11 +106,11 @@ namespace BDELog.Contexts
 
                 entity.Property(e => e.BdMaint).HasPrecision(9);
 
-                entity.Property(e => e.BdModifiedby).HasPrecision(9);
+                entity.Property(e => e.BdModifiedby).HasPrecision(10);
 
                 entity.Property(e => e.BdOp).HasPrecision(9);
 
-                entity.Property(e => e.BdPaperok).HasPrecision(1);
+                entity.Property(e => e.BdPaperok).HasPrecision(9);
 
                 entity.Property(e => e.BdPart).IsUnicode(false);
 
@@ -110,13 +120,22 @@ namespace BDELog.Contexts
 
                 entity.Property(e => e.BdSub).HasPrecision(9);
 
-                entity.Property(e => e.BdTime).HasPrecision(9);
-
                 entity.HasOne(d => d.BdContNavigation)
                     .WithMany(p => p.BdpfBdpfmas)
                     .HasForeignKey(d => d.BdCont)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("BDPF_BDPFMA_BDPF_CONTMEASURECODE");
+
+                entity.HasOne(d => d.BdContmeasNavigation)
+                    .WithMany(p => p.BdpfBdpfmas)
+                    .HasForeignKey(d => d.BdContmeas)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("BDPF_BDPFMA_BDPF_CONTMEAS");
+
+                entity.HasOne(d => d.BdCreatedbyNavigation)
+                    .WithMany(p => p.BdpfBdpfmaBdCreatedbyNavigations)
+                    .HasForeignKey(d => d.BdCreatedby)
+                    .HasConstraintName("BDPF_BDPFMA_USER_CREATE");
 
                 entity.HasOne(d => d.BdCuzNavigation)
                     .WithMany(p => p.BdpfBdpfmas)
@@ -148,17 +167,47 @@ namespace BDELog.Contexts
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("BDPF_BDPFMA_BDPF_MAINT");
 
+                entity.HasOne(d => d.BdModifiedbyNavigation)
+                    .WithMany(p => p.BdpfBdpfmaBdModifiedbyNavigations)
+                    .HasForeignKey(d => d.BdModifiedby)
+                    .HasConstraintName("BDPF_BDPFMA_USER_MODIFY");
+
                 entity.HasOne(d => d.BdOpNavigation)
                     .WithMany(p => p.BdpfBdpfmas)
                     .HasForeignKey(d => d.BdOp)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("BDPF_BDPFMA_BDPF_OP");
 
+                entity.HasOne(d => d.BdPaperokNavigation)
+                    .WithMany(p => p.BdpfBdpfmas)
+                    .HasForeignKey(d => d.BdPaperok)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("BDPF_BDPFMA_BDPF_PAPER");
+
                 entity.HasOne(d => d.BdSubNavigation)
                     .WithMany(p => p.BdpfBdpfmas)
                     .HasForeignKey(d => d.BdSub)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("BDPF_BDPFMA_BDPF_MCSUBUNIT");
+            });
+
+            modelBuilder.Entity<BdpfBlog>(entity =>
+            {
+                entity.HasKey(e => e.BlogId)
+                    .HasName("BDPF_BLOG_PK");
+
+                entity.Property(e => e.BlogId).HasPrecision(9);
+
+                entity.Property(e => e.BlogAuthor).HasPrecision(10);
+
+                entity.Property(e => e.BlogTitle).IsUnicode(false);
+
+                entity.Property(e => e.BlogTxt).IsUnicode(false);
+
+                entity.HasOne(d => d.BlogAuthorNavigation)
+                    .WithMany(p => p.BdpfBlogs)
+                    .HasForeignKey(d => d.BlogAuthor)
+                    .HasConstraintName("BDPF_BLOG_USR_USER");
             });
 
             modelBuilder.Entity<BdpfCausecode>(entity =>
@@ -193,6 +242,18 @@ namespace BDELog.Contexts
                     .HasForeignKey(d => d.CellArea)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("BDPF_CELL_BDPF_AREA");
+            });
+
+            modelBuilder.Entity<BdpfContmea>(entity =>
+            {
+                entity.HasKey(e => e.ContmeasId)
+                    .HasName("BDPF_CONTMEAS_PK");
+
+                entity.Property(e => e.ContmeasId).HasPrecision(9);
+
+                entity.Property(e => e.ContmeasName).IsUnicode(false);
+
+                entity.Property(e => e.ContmeasNo).HasPrecision(9);
             });
 
             modelBuilder.Entity<BdpfContmeasurecode>(entity =>
@@ -343,31 +404,73 @@ namespace BDELog.Contexts
                 entity.Property(e => e.OpName).IsUnicode(false);
             });
 
-            modelBuilder.Entity<BdpfUsername>(entity =>
+            modelBuilder.Entity<BdpfPaper>(entity =>
             {
-                entity.HasKey(e => e.UserId)
-                    .HasName("BDPF_USERNAMES_PK");
+                entity.HasKey(e => e.PaperId)
+                    .HasName("BDPF_PAPER_PK");
 
-                entity.Property(e => e.UserId).HasPrecision(9);
+                entity.Property(e => e.PaperId).HasPrecision(9);
 
-                entity.Property(e => e.UserName).IsUnicode(false);
-
-                entity.Property(e => e.UserRole).HasPrecision(9);
-
-                entity.HasOne(d => d.UserRoleNavigation)
-                    .WithMany(p => p.BdpfUsernames)
-                    .HasForeignKey(d => d.UserRole)
-                    .HasConstraintName("BDPF_ROLE_BDPF_USERNAMES");
+                entity.Property(e => e.PaperName).IsUnicode(false);
             });
 
-            modelBuilder.Entity<BdpfUserrole>(entity =>
+            modelBuilder.Entity<UsrRole>(entity =>
             {
-                entity.HasKey(e => e.RoleId)
-                    .HasName("BDPF_USERROLES_PK");
+                entity.Property(e => e.Id).HasPrecision(10);
+            });
 
-                entity.Property(e => e.RoleId).HasPrecision(9);
+            modelBuilder.Entity<UsrRoleclaim>(entity =>
+            {
+                entity.Property(e => e.Id).HasPrecision(10);
 
-                entity.Property(e => e.RoleName).IsUnicode(false);
+                entity.Property(e => e.Roleid).HasPrecision(10);
+            });
+
+            modelBuilder.Entity<UsrUser>(entity =>
+            {
+                entity.Property(e => e.Id).HasPrecision(10);
+
+                entity.Property(e => e.Accessfailedcount).HasPrecision(10);
+
+                entity.Property(e => e.Emailconfirmed).HasPrecision(1);
+
+                entity.Property(e => e.Lockoutenabled).HasPrecision(1);
+
+                entity.Property(e => e.Lockoutend).HasPrecision(7);
+
+                entity.Property(e => e.Phonenumberconfirmed).HasPrecision(1);
+
+                entity.Property(e => e.Twofactorenabled).HasPrecision(1);
+            });
+
+            modelBuilder.Entity<UsrUserclaim>(entity =>
+            {
+                entity.Property(e => e.Id).HasPrecision(10);
+
+                entity.Property(e => e.Userid).HasPrecision(10);
+            });
+
+            modelBuilder.Entity<UsrUserlogin>(entity =>
+            {
+                entity.HasKey(e => new { e.Loginprovider, e.Providerkey });
+
+                entity.Property(e => e.Userid).HasPrecision(10);
+            });
+
+            modelBuilder.Entity<UsrUserrole>(entity =>
+            {
+                entity.HasKey(e => new { e.Userid, e.Roleid });
+
+                entity.Property(e => e.Userid).HasPrecision(10);
+
+                entity.Property(e => e.Roleid).HasPrecision(10);
+            });
+
+            modelBuilder.Entity<UsrUsertoken>(entity =>
+            {
+                entity.HasKey(e => new { e.Userid, e.Loginprovider, e.Name });
+
+                entity.Property(e => e.Userid).HasPrecision(10);
             });
 
             OnModelCreatingPartial(modelBuilder);

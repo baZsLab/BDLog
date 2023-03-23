@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BDELog.Contexts;
 using BDELog.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BDELog.Controllers
 {
+    [Authorize]
     public class BdpfMcunitsController : Controller
     {
         private readonly BD_Context _context;
@@ -46,6 +48,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfMcunits/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["UnitMc"] = new SelectList(_context.BdpfMcs, "McId", "McName");
