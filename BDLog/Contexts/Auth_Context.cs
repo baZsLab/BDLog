@@ -13,6 +13,7 @@ namespace BDELog.Contexts
     public class ApplicationUser: IdentityUser<int>
     {
         public string FullUser { get; set; }
+        public int DefCell { get; set; }
     }
     public partial class Auth_Context : IdentityDbContext<ApplicationUser,IdentityRole<int>, int>
     {
@@ -39,31 +40,31 @@ namespace BDELog.Contexts
             //builder.HasDefaultSchema("Identity");
             builder.Entity<ApplicationUser>(entity =>
             {
-                entity.ToTable(name: "USR_USER");
+                entity.ToTable(name: "B_USER");
             });
             builder.Entity<IdentityRole<int>>(entity =>
             {
-                entity.ToTable(name: "USR_ROLE");
+                entity.ToTable(name: "B_ROLE");
             });
             builder.Entity<IdentityUserRole<int>>(entity =>
             {
-                entity.ToTable("USR_USERROLES");
+                entity.ToTable("B_USERROLES");
             });
             builder.Entity<IdentityUserClaim<int>>(entity =>
             {
-                entity.ToTable("USR_USERCLAIMS");
+                entity.ToTable("B_USERCLAIMS");
             });
             builder.Entity<IdentityUserLogin<int>>(entity =>
             {
-                entity.ToTable("USR_USERLOGINS");
+                entity.ToTable("B_USERLOGINS");
             });
             builder.Entity<IdentityRoleClaim<int>>(entity =>
             {
-                entity.ToTable("USR_ROLECLAIMS");
+                entity.ToTable("B_ROLECLAIMS");
             });
             builder.Entity<IdentityUserToken<int>>(entity =>
             {
-                entity.ToTable("USR_USERTOKENS");
+                entity.ToTable("B_USERTOKENS");
             });
 
 

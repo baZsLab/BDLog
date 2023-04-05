@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BDELog.Models
 {
-    [Table("USR_ROLECLAIMS")]
-    [Index(nameof(Roleid), Name = "IX_USR_ROLECLAIMS_ROLEID")]
-    public partial class UsrRoleclaim
+    [Table("B_ROLECLAIMS")]
+    [Index(nameof(Roleid), Name = "IX_B_ROLECLAIMS_ROLEID")]
+    public partial class BRoleclaim
     {
         [Key]
         [Column("ID")]
@@ -23,7 +23,7 @@ namespace BDELog.Models
         public string Claimvalue { get; set; }
 
         [ForeignKey(nameof(Roleid))]
-        [InverseProperty(nameof(UsrRole.UsrRoleclaims))]
-        public virtual UsrRole Role { get; set; }
+        [InverseProperty(nameof(BRole.BRoleclaims))]
+        public virtual BRole Role { get; set; }
     }
 }

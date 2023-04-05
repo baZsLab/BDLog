@@ -63,13 +63,13 @@ namespace BDELog.Controllers
         {
             ViewData["BdCont"] = new SelectList(_context.BdpfContmeasurecodes, "ContId", "ContName").OrderBy(m=>m.Text);
             ViewData["BdContmeas"] = new SelectList(_context.BdpfContmeas, "ContmeasId", "ContmeasName");
-            ViewData["BdCreatedby"] = new SelectList(_context.UsrUsers, "Id", "Id");
+            ViewData["BdCreatedby"] = new SelectList(_context.BUsers, "Id", "Id");
             ViewData["BdCuz"] = new SelectList(_context.BdpfCausecodes, "CuzId", "CuzName").OrderBy(m => m.Text);
             ViewData["BdDmg"] = new SelectList(_context.BdpfDamagecodes, "DmgId", "DmgName").OrderBy(m => m.Text);
             ViewData["BdEm"] = new SelectList(_context.BdpfEms, "BdpfId", "BdpfName");
             ViewData["BdFault"] = new SelectList(_context.BdpfFaults, "FaultId", "FaultName");
             ViewData["BdMaint"] = new SelectList(_context.BdpfMaints, "MaintId", "MaintName").OrderBy(m => m.Text);
-            ViewData["BdModifiedby"] = new SelectList(_context.UsrUsers, "Id", "Id");
+            ViewData["BdModifiedby"] = new SelectList(_context.BUsers, "Id", "Id");
             ViewData["BdOp"] = new SelectList(_context.BdpfOps, "OpId", "OpName").OrderBy(m => m.Text);
             ViewData["BdPaperok"] = new SelectList(_context.BdpfPapers, "PaperId", "PaperName");
             ViewData["BdSub"] = new SelectList(_context.BdpfMcsubunits, "SubId", "SubName");
@@ -91,13 +91,13 @@ namespace BDELog.Controllers
             }
             ViewData["BdCont"] = new SelectList(_context.BdpfContmeasurecodes, "ContId", "ContCode", bdpfBdpfma.BdCont);
             ViewData["BdContmeas"] = new SelectList(_context.BdpfContmeas, "ContmeasId", "ContmeasName", bdpfBdpfma.BdContmeas);
-            ViewData["BdCreatedby"] = new SelectList(_context.UsrUsers, "Id", "Id", bdpfBdpfma.BdCreatedby);
+            ViewData["BdCreatedby"] = new SelectList(_context.BUsers, "Id", "Id", bdpfBdpfma.BdCreatedby);
             ViewData["BdCuz"] = new SelectList(_context.BdpfCausecodes, "CuzId", "CuzCode", bdpfBdpfma.BdCuz);
             ViewData["BdDmg"] = new SelectList(_context.BdpfDamagecodes, "DmgId", "DmgCode", bdpfBdpfma.BdDmg);
             ViewData["BdEm"] = new SelectList(_context.BdpfEms, "BdpfId", "BdpfName", bdpfBdpfma.BdEm);
             ViewData["BdFault"] = new SelectList(_context.BdpfFaults, "FaultId", "FaultName", bdpfBdpfma.BdFault);
             ViewData["BdMaint"] = new SelectList(_context.BdpfMaints, "MaintId", "MaintName", bdpfBdpfma.BdMaint);
-            ViewData["BdModifiedby"] = new SelectList(_context.UsrUsers, "Id", "Id", bdpfBdpfma.BdModifiedby);
+            ViewData["BdModifiedby"] = new SelectList(_context.BUsers, "Id", "Id", bdpfBdpfma.BdModifiedby);
             ViewData["BdOp"] = new SelectList(_context.BdpfOps, "OpId", "OpName", bdpfBdpfma.BdOp);
             ViewData["BdPaperok"] = new SelectList(_context.BdpfPapers, "PaperId", "PaperName", bdpfBdpfma.BdPaperok);
             ViewData["BdSub"] = new SelectList(_context.BdpfMcsubunits, "SubId", "SubName", bdpfBdpfma.BdSub);
@@ -119,13 +119,13 @@ namespace BDELog.Controllers
             }
             ViewData["BdCont"] = new SelectList(_context.BdpfContmeasurecodes, "ContId", "ContCode", bdpfBdpfma.BdCont);
             ViewData["BdContmeas"] = new SelectList(_context.BdpfContmeas, "ContmeasId", "ContmeasName", bdpfBdpfma.BdContmeas);
-            ViewData["BdCreatedby"] = new SelectList(_context.UsrUsers, "Id", "Id", bdpfBdpfma.BdCreatedby);
+            ViewData["BdCreatedby"] = new SelectList(_context.BUsers, "Id", "Id", bdpfBdpfma.BdCreatedby);
             ViewData["BdCuz"] = new SelectList(_context.BdpfCausecodes, "CuzId", "CuzCode", bdpfBdpfma.BdCuz);
             ViewData["BdDmg"] = new SelectList(_context.BdpfDamagecodes, "DmgId", "DmgCode", bdpfBdpfma.BdDmg);
             ViewData["BdEm"] = new SelectList(_context.BdpfEms, "BdpfId", "BdpfName", bdpfBdpfma.BdEm);
             ViewData["BdFault"] = new SelectList(_context.BdpfFaults, "FaultId", "FaultName", bdpfBdpfma.BdFault);
             ViewData["BdMaint"] = new SelectList(_context.BdpfMaints, "MaintId", "MaintName", bdpfBdpfma.BdMaint);
-            ViewData["BdModifiedby"] = new SelectList(_context.UsrUsers, "Id", "Id", bdpfBdpfma.BdModifiedby);
+            ViewData["BdModifiedby"] = new SelectList(_context.BUsers, "Id", "Id", bdpfBdpfma.BdModifiedby);
             ViewData["BdOp"] = new SelectList(_context.BdpfOps, "OpId", "OpName", bdpfBdpfma.BdOp);
             ViewData["BdPaperok"] = new SelectList(_context.BdpfPapers, "PaperId", "PaperName", bdpfBdpfma.BdPaperok);
             ViewData["BdSub"] = new SelectList(_context.BdpfMcsubunits, "SubId", "SubName", bdpfBdpfma.BdSub);
@@ -166,13 +166,13 @@ namespace BDELog.Controllers
             }
             ViewData["BdCont"] = new SelectList(_context.BdpfContmeasurecodes, "ContId", "ContCode", bdpfBdpfma.BdCont);
             ViewData["BdContmeas"] = new SelectList(_context.BdpfContmeas, "ContmeasId", "ContmeasName", bdpfBdpfma.BdContmeas);
-            ViewData["BdCreatedby"] = new SelectList(_context.UsrUsers, "Id", "Id", bdpfBdpfma.BdCreatedby);
+            ViewData["BdCreatedby"] = new SelectList(_context.BUsers, "Id", "Id", bdpfBdpfma.BdCreatedby);
             ViewData["BdCuz"] = new SelectList(_context.BdpfCausecodes, "CuzId", "CuzCode", bdpfBdpfma.BdCuz);
             ViewData["BdDmg"] = new SelectList(_context.BdpfDamagecodes, "DmgId", "DmgCode", bdpfBdpfma.BdDmg);
             ViewData["BdEm"] = new SelectList(_context.BdpfEms, "BdpfId", "BdpfName", bdpfBdpfma.BdEm);
             ViewData["BdFault"] = new SelectList(_context.BdpfFaults, "FaultId", "FaultName", bdpfBdpfma.BdFault);
             ViewData["BdMaint"] = new SelectList(_context.BdpfMaints, "MaintId", "MaintName", bdpfBdpfma.BdMaint);
-            ViewData["BdModifiedby"] = new SelectList(_context.UsrUsers, "Id", "Id", bdpfBdpfma.BdModifiedby);
+            ViewData["BdModifiedby"] = new SelectList(_context.BUsers, "Id", "Id", bdpfBdpfma.BdModifiedby);
             ViewData["BdOp"] = new SelectList(_context.BdpfOps, "OpId", "OpName", bdpfBdpfma.BdOp);
             ViewData["BdPaperok"] = new SelectList(_context.BdpfPapers, "PaperId", "PaperName", bdpfBdpfma.BdPaperok);
             ViewData["BdSub"] = new SelectList(_context.BdpfMcsubunits, "SubId", "SubName", bdpfBdpfma.BdSub);

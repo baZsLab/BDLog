@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BDELog.Models
 {
-    [Table("USR_USERTOKENS")]
-    public partial class UsrUsertoken
+    [Table("B_USERTOKENS")]
+    public partial class BUsertoken
     {
         [Key]
         [Column("USERID")]
@@ -26,7 +26,7 @@ namespace BDELog.Models
         public string Value { get; set; }
 
         [ForeignKey(nameof(Userid))]
-        [InverseProperty(nameof(UsrUser.UsrUsertokens))]
-        public virtual UsrUser User { get; set; }
+        [InverseProperty(nameof(BUser.BUsertokens))]
+        public virtual BUser User { get; set; }
     }
 }

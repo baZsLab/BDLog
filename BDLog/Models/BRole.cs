@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BDELog.Models
 {
-    [Table("USR_ROLE")]
+    [Table("B_ROLE")]
     [Index(nameof(Normalizedname), Name = "RoleNameIndex", IsUnique = true)]
-    public partial class UsrRole
+    public partial class BRole
     {
-        public UsrRole()
+        public BRole()
         {
-            UsrRoleclaims = new HashSet<UsrRoleclaim>();
-            UsrUserroles = new HashSet<UsrUserrole>();
+            BRoleclaims = new HashSet<BRoleclaim>();
+            BUserroles = new HashSet<BUserrole>();
         }
 
         [Key]
@@ -30,9 +30,9 @@ namespace BDELog.Models
         [Column("CONCURRENCYSTAMP")]
         public string Concurrencystamp { get; set; }
 
-        [InverseProperty(nameof(UsrRoleclaim.Role))]
-        public virtual ICollection<UsrRoleclaim> UsrRoleclaims { get; set; }
-        [InverseProperty(nameof(UsrUserrole.Role))]
-        public virtual ICollection<UsrUserrole> UsrUserroles { get; set; }
+        [InverseProperty(nameof(BRoleclaim.Role))]
+        public virtual ICollection<BRoleclaim> BRoleclaims { get; set; }
+        [InverseProperty(nameof(BUserrole.Role))]
+        public virtual ICollection<BUserrole> BUserroles { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace BDELog.Models
         public int? BlogAuthor { get; set; }
 
         [ForeignKey(nameof(BlogAuthor))]
-        [InverseProperty(nameof(UsrUser.BdpfBlogs))]
-        public virtual UsrUser BlogAuthorNavigation { get; set; }
+        [InverseProperty(nameof(BUser.BdpfBlogs))]
+        public virtual BUser BlogAuthorNavigation { get; set; }
     }
 }

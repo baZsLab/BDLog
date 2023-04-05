@@ -107,8 +107,6 @@
                     data-field="BdStopDate">
                     Hiba vége
                 </th>
-
-
                 <th data-sortable="true"
                     data-filter-control="input"
                     data-field="AreaName">
@@ -144,6 +142,127 @@
                     data-field="SubSap">
                     Alegység kód
                 </th>
+                <th data-sortable="true"
+                    data-filter-control="select"
+                    data-field="BdEm">
+                    E/G
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="select"
+                    data-field="BdFault">
+                    Hibatípus
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdDowntime">
+                    Állásidő
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdOEE">
+                    OEE
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdM2p">
+                    M2P
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdPart">
+                    Alkatrész
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdCost">
+                    Költség
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdDmg">
+                    Kár kód
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdCuz">
+                    Ok kód
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdCont">
+                    Ell.kód
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdFaultdesc">
+                    Hiba jellege
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdContmeas">
+                    Ellenintézkedés megtörtént
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdContmeasdesc">
+                    Hibaelhárítás leállítása
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdPaper">
+                    PM Lap
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="select"
+                    data-field="BdIdaneed">
+                    IDA kell
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="select"
+                    data-field="BdStandard">
+                    Sztenderd
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdAddinfo">
+                    Megjegyzés
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="select"
+                    data-field="BdRepeat">
+                    Ismétlődő
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdOp">
+                    Operátor
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdMaint">
+                    Karbantartó
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdCreatedby">
+                    Felvette
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdCreateddate">
+                    Felvette idő
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdModifiedby">
+                    Módosította
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="BdModifieddate">
+                    Módosította idő
+                </th>
+
                 <th></th>
             </tr>
         </thead>
@@ -160,6 +279,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.BdStopdate)
                     </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.AreaName)
                     </td>
@@ -181,8 +301,78 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.subSAP)
                     </td>
-
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdEm)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdFault)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdDowntime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdOEE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdM2p)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdPart)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdCost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdDmg)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdCuz)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdCont)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdFaultdesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdContmeas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdContmeasdesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdPaperok)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdIdaneed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdStandard)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdAddinfo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdRepeat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdOp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdMaint)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdCreatedby)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdCreateddate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdModifiedby)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BdModifieddate)
+                    </td>
 
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.subID">

@@ -49,6 +49,8 @@ namespace BDELog.Models
         public DateTime? BdModifieddate { get; set; }
         public bool BdInactive { get; set; }
         public bool BdRepeat { get; set; }
+        public double BdDowntime { get; set; }
+        public double BdOEE { get; set; }
 
 
     }

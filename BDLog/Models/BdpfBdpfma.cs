@@ -84,8 +84,8 @@ namespace BDELog.Models
         [InverseProperty(nameof(BdpfContmea.BdpfBdpfmas))]
         public virtual BdpfContmea BdContmeasNavigation { get; set; }
         [ForeignKey(nameof(BdCreatedby))]
-        [InverseProperty(nameof(UsrUser.BdpfBdpfmaBdCreatedbyNavigations))]
-        public virtual UsrUser BdCreatedbyNavigation { get; set; }
+        [InverseProperty(nameof(BUser.BdpfBdpfmaBdCreatedbyNavigations))]
+        public virtual BUser BdCreatedbyNavigation { get; set; }
         [ForeignKey(nameof(BdCuz))]
         [InverseProperty(nameof(BdpfCausecode.BdpfBdpfmas))]
         public virtual BdpfCausecode BdCuzNavigation { get; set; }
@@ -102,8 +102,8 @@ namespace BDELog.Models
         [InverseProperty(nameof(BdpfMaint.BdpfBdpfmas))]
         public virtual BdpfMaint BdMaintNavigation { get; set; }
         [ForeignKey(nameof(BdModifiedby))]
-        [InverseProperty(nameof(UsrUser.BdpfBdpfmaBdModifiedbyNavigations))]
-        public virtual UsrUser BdModifiedbyNavigation { get; set; }
+        [InverseProperty(nameof(BUser.BdpfBdpfmaBdModifiedbyNavigations))]
+        public virtual BUser BdModifiedbyNavigation { get; set; }
         [ForeignKey(nameof(BdOp))]
         [InverseProperty(nameof(BdpfOp.BdpfBdpfmas))]
         public virtual BdpfOp BdOpNavigation { get; set; }

@@ -23,7 +23,7 @@ namespace BDELog.Controllers
             return View(roles);
         }
         [HttpGet]
-        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create() 
         {
             return View();

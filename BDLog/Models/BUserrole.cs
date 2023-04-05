@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BDELog.Models
 {
-    [Table("USR_USERROLES")]
-    [Index(nameof(Roleid), Name = "IX_USR_USERROLES_ROLEID")]
-    public partial class UsrUserrole
+    [Table("B_USERROLES")]
+    [Index(nameof(Roleid), Name = "IX_B_USERROLES_ROLEID")]
+    public partial class BUserrole
     {
         [Key]
         [Column("USERID")]
@@ -20,10 +20,10 @@ namespace BDELog.Models
         public int Roleid { get; set; }
 
         [ForeignKey(nameof(Roleid))]
-        [InverseProperty(nameof(UsrRole.UsrUserroles))]
-        public virtual UsrRole Role { get; set; }
+        [InverseProperty(nameof(BRole.BUserroles))]
+        public virtual BRole Role { get; set; }
         [ForeignKey(nameof(Userid))]
-        [InverseProperty(nameof(UsrUser.UsrUserroles))]
-        public virtual UsrUser User { get; set; }
+        [InverseProperty(nameof(BUser.BUserroles))]
+        public virtual BUser User { get; set; }
     }
 }

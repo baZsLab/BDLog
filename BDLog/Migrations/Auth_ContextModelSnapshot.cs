@@ -36,6 +36,10 @@ namespace BDELog.Migrations
                         .HasColumnType("NVARCHAR2(2000)")
                         .HasColumnName("CONCURRENCYSTAMP");
 
+                    b.Property<int>("DefCell")
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("DEFCELL");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("NVARCHAR2(256)")
@@ -93,7 +97,7 @@ namespace BDELog.Migrations
                         .HasColumnName("USERNAME");
 
                     b.HasKey("Id")
-                        .HasName("PK_USR_USER");
+                        .HasName("PK_B_USER");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -103,7 +107,7 @@ namespace BDELog.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("\"NORMALIZEDUSERNAME\" IS NOT NULL");
 
-                    b.ToTable("USR_USER");
+                    b.ToTable("B_USER");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -130,14 +134,14 @@ namespace BDELog.Migrations
                         .HasColumnName("NORMALIZEDNAME");
 
                     b.HasKey("Id")
-                        .HasName("PK_USR_ROLE");
+                        .HasName("PK_B_ROLE");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("\"NORMALIZEDNAME\" IS NOT NULL");
 
-                    b.ToTable("USR_ROLE");
+                    b.ToTable("B_ROLE");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -161,12 +165,12 @@ namespace BDELog.Migrations
                         .HasColumnName("ROLEID");
 
                     b.HasKey("Id")
-                        .HasName("PK_USR_ROLECLAIMS");
+                        .HasName("PK_B_ROLECLAIMS");
 
                     b.HasIndex("RoleId")
-                        .HasDatabaseName("IX_USR_ROLECLAIMS_ROLEID");
+                        .HasDatabaseName("IX_B_ROLECLAIMS_ROLEID");
 
-                    b.ToTable("USR_ROLECLAIMS");
+                    b.ToTable("B_ROLECLAIMS");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
@@ -190,12 +194,12 @@ namespace BDELog.Migrations
                         .HasColumnName("USERID");
 
                     b.HasKey("Id")
-                        .HasName("PK_USR_USERCLAIMS");
+                        .HasName("PK_B_USERCLAIMS");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("IX_USR_USERCLAIMS_USERID");
+                        .HasDatabaseName("IX_B_USERCLAIMS_USERID");
 
-                    b.ToTable("USR_USERCLAIMS");
+                    b.ToTable("B_USERCLAIMS");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
@@ -219,12 +223,12 @@ namespace BDELog.Migrations
                         .HasColumnName("USERID");
 
                     b.HasKey("LoginProvider", "ProviderKey")
-                        .HasName("PK_USR_USERLOGINS");
+                        .HasName("PK_B_USERLOGINS");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("IX_USR_USERLOGINS_USERID");
+                        .HasDatabaseName("IX_B_USERLOGINS_USERID");
 
-                    b.ToTable("USR_USERLOGINS");
+                    b.ToTable("B_USERLOGINS");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
@@ -238,12 +242,12 @@ namespace BDELog.Migrations
                         .HasColumnName("ROLEID");
 
                     b.HasKey("UserId", "RoleId")
-                        .HasName("PK_USR_USERROLES");
+                        .HasName("PK_B_USERROLES");
 
                     b.HasIndex("RoleId")
-                        .HasDatabaseName("IX_USR_USERROLES_ROLEID");
+                        .HasDatabaseName("IX_B_USERROLES_ROLEID");
 
-                    b.ToTable("USR_USERROLES");
+                    b.ToTable("B_USERROLES");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -267,9 +271,9 @@ namespace BDELog.Migrations
                         .HasColumnName("VALUE");
 
                     b.HasKey("UserId", "LoginProvider", "Name")
-                        .HasName("PK_USR_USERTOKENS");
+                        .HasName("PK_B_USERTOKENS");
 
-                    b.ToTable("USR_USERTOKENS");
+                    b.ToTable("B_USERTOKENS");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -277,7 +281,7 @@ namespace BDELog.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .HasConstraintName("FK_USR_ROLECLAIMS_USR_ROLE_ROLEID")
+                        .HasConstraintName("FK_B_ROLECLAIMS_B_ROLE_ROLEID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -287,7 +291,7 @@ namespace BDELog.Migrations
                     b.HasOne("BDELog.Contexts.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK_USR_USERCLAIMS_USR_USER_USERID")
+                        .HasConstraintName("FK_B_USERCLAIMS_B_USER_USERID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -297,7 +301,7 @@ namespace BDELog.Migrations
                     b.HasOne("BDELog.Contexts.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK_USR_USERLOGINS_USR_USER_USERID")
+                        .HasConstraintName("FK_B_USERLOGINS_B_USER_USERID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -307,14 +311,14 @@ namespace BDELog.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .HasConstraintName("FK_USR_USERROLES_USR_ROLE_ROLEID")
+                        .HasConstraintName("FK_B_USERROLES_B_ROLE_ROLEID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BDELog.Contexts.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK_USR_USERROLES_USR_USER_USERID")
+                        .HasConstraintName("FK_B_USERROLES_B_USER_USERID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -324,7 +328,7 @@ namespace BDELog.Migrations
                     b.HasOne("BDELog.Contexts.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK_USR_USERTOKENS_USR_USER_USERID")
+                        .HasConstraintName("FK_B_USERTOKENS_B_USER_USERID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
