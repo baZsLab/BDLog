@@ -26,26 +26,26 @@ namespace BDELog.Models
         public long BdId { get; set; }
         public DateTime BdStartdate { get; set; }
         public DateTime BdStopdate { get; set; }
-        public int BdFault { get; set; }
-        public int BdOp { get; set; }
-        public int BdMaint { get; set; }
-        public int BdEm { get; set; }
+        public string BdFault { get; set; }
+        public string BdOp { get; set; }
+        public string BdMaint { get; set; }
+        public string BdEm { get; set; }
         public string BdM2p { get; set; }
-        public int BdDmg { get; set; }
-        public int BdCuz { get; set; }
-        public int BdCont { get; set; }
+        public string BdDmg { get; set; }
+        public string BdCuz { get; set; }
+        public string BdCont { get; set; }
         public string BdPart { get; set; }
         public long? BdCost { get; set; }
         public string BdFaultdesc { get; set; }
-        public int BdContmeas { get; set; }
+        public string BdContmeas { get; set; }
         public string BdContmeasdesc { get; set; }
-        public int BdPaperok { get; set; }
+        public string BdPaperok { get; set; }
         public bool BdStandard { get; set; }
         public string BdAddinfo { get; set; }
         public bool BdIdaneed { get; set; }
-        public int? BdCreatedby { get; set; }
+        public string BdCreatedby { get; set; }
         public DateTime? BdCreateddate { get; set; }
-        public int? BdModifiedby { get; set; }
+        public string BdModifiedby { get; set; }
         public DateTime? BdModifieddate { get; set; }
         public bool BdInactive { get; set; }
         public bool BdRepeat { get; set; }

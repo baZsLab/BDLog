@@ -22,6 +22,19 @@ namespace BDELog.Repo
                           join mc in _context.BdpfMcs on un.UnitMc equals mc.McId
                           join ce in _context.BdpfCells on mc.McCell equals ce.CellId
                           join ar in _context.BdpfAreas on ce.CellArea equals ar.AreaId
+                          join ca in _context.BdpfCausecodes on bd.BdCuz equals ca.CuzId
+                          join conmes in _context.BdpfContmeas on bd.BdContmeas equals conmes.ContmeasId
+                          join co in _context.BdpfContmeasurecodes on bd.BdCont equals co.ContId
+                          join dmg in _context.BdpfDamagecodes on bd.BdDmg equals dmg.DmgId
+                          join em in _context.BdpfEms on bd.BdEm equals em.BdpfId
+                          join fa in _context.BdpfFaults on bd.BdFault equals fa.FaultId
+                          join ma in _context.BdpfMaints on bd.BdMaint equals ma.MaintId
+                          join op in _context.BdpfOps on bd.BdOp equals op.OpId
+                          join pa in _context.BdpfPapers on bd.BdPaperok equals pa.PaperId
+                          join cr in _context.BUsers on bd.BdCreatedby equals cr.Id
+                          join mo in _context.BUsers on bd.BdModifiedby equals mo.Id
+                          into bd_table
+                          from bdt in bd_table.DefaultIfEmpty()
                           select new qryBd()
                           {
                               AreaId = Convert.ToInt16(ar.AreaId),
@@ -39,31 +52,31 @@ namespace BDELog.Repo
                               BdId= bd.BdId,//
                               BdStartdate= bd.BdStartdate,//
                               BdStopdate= bd.BdStopdate,//
-                              BdFault= bd.BdFault,//
-                              BdOp= bd.BdOp,//
-                              BdMaint= bd.BdMaint,//
-                              BdEm= bd.BdEm,//
+                              BdFault= fa.FaultName,//
+                              BdOp= op.OpName,//
+                              BdMaint= ma.MaintName,//
+                              BdEm= em.BdpfName,//
                               BdM2p= bd.BdM2p,//
-                              BdDmg= bd.BdDmg,//
-                              BdCuz= bd.BdCuz,//
-                              BdCont= bd.BdCont,//
+                              BdDmg= dmg.DmgCode,//
+                              BdCuz= ca.CuzCode,//
+                              BdCont= co.ContCode,//
                               BdPart= bd.BdPart,//
                               BdCost= bd.BdCost,//
                               BdFaultdesc= bd.BdFaultdesc,//
-                              BdContmeas= bd.BdContmeas,//
+                              BdContmeas= conmes.ContmeasName,//
                               BdContmeasdesc= bd.BdContmeasdesc,//
-                              BdPaperok= bd.BdPaperok,//
+                              BdPaperok= pa.PaperName,//
                               BdStandard= bd.BdStandard,//
                               BdAddinfo= bd.BdAddinfo,//
                               BdIdaneed= bd.BdIdaneed,//
-                              BdCreatedby= bd.BdCreatedby,
+                              BdCreatedby= cr.Username,
                               BdCreateddate= bd.BdCreateddate,
-                              BdModifiedby= bd.BdModifiedby,
+                              BdModifiedby= bdt.Username ?? string.Empty,
                               BdModifieddate= bd.BdModifieddate,
                               BdInactive= bd.BdInactive,
                               BdRepeat= bd.BdRepeat,//
                               BdDowntime = (bd.BdStopdate - bd.BdStartdate).TotalMinutes, //
-                              BdOEE=((bd.BdStopdate - bd.BdStartdate).TotalMinutes)/1440 //
+                              BdOEE= Math.Round((((bd.BdStopdate - bd.BdStartdate).TotalMinutes)/1440)*100, 2 )//
                               
                           }).ToList();
             return qryList;

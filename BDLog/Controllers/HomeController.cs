@@ -3,6 +3,8 @@ using BDELog.Models;
 using BDELog.Repo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -58,11 +60,18 @@ namespace BDELog.Controllers
             var sub_result = subs_result_part.OrderBy(e => e.SubName).ToList();
             return new JsonResult(sub_result);
         }
+
+        public JsonResult GetMcSubData()
+        {
+            var subRepository = new qryMcSubUnitsRepo(_context);
+            var subs = subRepository.GetQryMcSubUnits();
+            return new JsonResult(subs);
+        }
         public IActionResult Index()
         {
             if (_signInManager.IsSignedIn(User))
             {
-                return View();
+                return View(_context.BdpfBlogs.Include(b=>b.BlogAuthorNavigation).OrderByDescending(m=>m.BlogDate).ToList());
             }
             else
             {
@@ -83,6 +92,35 @@ namespace BDELog.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("BlogTitle,BlogTxt,BlogDate,BlogAuthor")] BdpfBlog bdpfBlog)
+        {
+            DateTime localDate = DateTime.Now;
+            var usrid = _userManager.GetUserId(User);
+            bdpfBlog.BlogDate = localDate;
+            bdpfBlog.BlogAuthor = int.Parse(usrid);
+            if (ModelState.IsValid)
+            {
+                _context.Add(bdpfBlog);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            //ViewData["CellArea"] = new SelectList(_context.BdpfAreas, "AreaId", "AreaName", bdpfCell.CellArea);
+            return View(bdpfBlog);
+        }
+
+
+
     }
 
 

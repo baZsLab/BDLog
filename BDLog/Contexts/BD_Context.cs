@@ -48,14 +48,14 @@ namespace BDELog.Contexts
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseOracle("User Id=TESTDB;Password=ABC;Data Source=localhost:1521/orcl;");
+                //optionsBuilder.UseOracle("User Id=TESTDB;Password=ABC;Data Source=localhost:1521/orcl;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("TESTDB")
-                .HasAnnotation("Relational:Collation", "USING_NLS_COMP");
+            //modelBuilder.HasDefaultSchema("CE")
+            //    .HasAnnotation("Relational:Collation", "USING_NLS_COMP");
 
             modelBuilder.Entity<BRole>(entity =>
             {

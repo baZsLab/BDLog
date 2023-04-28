@@ -8,16 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using BDELog.Contexts;
 using BDELog.Models;
 using BDELog.Repo;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BDELog.Controllers
+    
 {
+    [Authorize]
     public class qryBdController : Controller
     {
         private readonly BD_Context _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public qryBdController(BD_Context context)
+
+        public qryBdController(BD_Context context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
+
         }
 
         // GET: BdpfBdpfmas
@@ -59,6 +68,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfBdpfmas/Create
+        [Authorize(Roles = "Maintenance Lead")]
         public IActionResult Create()
         {
             ViewData["BdCont"] = new SelectList(_context.BdpfContmeasurecodes, "ContId", "ContName").OrderBy(m=>m.Text);
@@ -83,6 +93,10 @@ namespace BDELog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BdId,BdSub,BdStartdate,BdStopdate,BdFault,BdOp,BdMaint,BdEm,BdM2p,BdDmg,BdCuz,BdCont,BdPart,BdCost,BdFaultdesc,BdContmeas,BdContmeasdesc,BdPaperok,BdAnalysis,BdStandard,BdAddinfo,BdIdaneed,BdCreatedby,BdCreateddate,BdModifiedby,BdModifieddate,BdInactive,BdRepeat")] BdpfBdpfma bdpfBdpfma)
         {
+            DateTime localDate = DateTime.Now;
+            var usrid = _userManager.GetUserId(User);
+            bdpfBdpfma.BdCreateddate= localDate;
+            bdpfBdpfma.BdCreatedby = int.Parse(usrid);
             if (ModelState.IsValid)
             {
                 _context.Add(bdpfBdpfma);
@@ -105,6 +119,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfBdpfmas/Edit/5
+        [Authorize(Roles = "Maintenance Lead")]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -144,6 +159,10 @@ namespace BDELog.Controllers
                 return NotFound();
             }
 
+            DateTime localDate = DateTime.Now;
+            var usrid = _userManager.GetUserId(User);
+            bdpfBdpfma.BdModifieddate = localDate;
+            bdpfBdpfma.BdModifiedby = int.Parse(usrid);
             if (ModelState.IsValid)
             {
                 try
@@ -180,6 +199,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfBdpfmas/Delete/5
+        [Authorize(Roles = "Maintenance Developer")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)

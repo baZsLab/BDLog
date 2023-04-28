@@ -30,8 +30,13 @@ namespace BDELog.Controllers
         }
 
         public async Task<IActionResult> CheckUserExist()
-        {
-            var username = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
+            {
+            //string asd = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            //asd = asd.Split('\\')[1];
+            //var username = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
+            var sss = User.Identity.Name;
+            var username = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
+            username = "fos";
             var user = await _userManager.FindByNameAsync(username);
             if (user != null)
             {
@@ -54,11 +59,11 @@ namespace BDELog.Controllers
             var username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             var password = "@Thispassword7";
 
-            string domainUser = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
+            //string domainUser = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
 
             //username = "dummydomain\\istvan.szabo2";
-            //domainUser = "istvan.szabo2";
-
+            string domainUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
+            var sss = User.Identity.Name;
             model.FullUserName = username;
             model.UserName = domainUser;
             model.Email = domainUser + "@bridgestone.eu";
@@ -102,7 +107,7 @@ namespace BDELog.Controllers
             var username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             var password = "@Thispassword7";
 
-            string domainUser = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
+            string domainUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
 
             model.FullUserName = username;
             model.UserName = domainUser;

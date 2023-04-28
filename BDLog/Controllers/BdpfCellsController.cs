@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BDELog.Contexts;
 using BDELog.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BDELog.Controllers
 {
+    [Authorize]
     public class BdpfCellsController : Controller
     {
         private readonly BD_Context _context;
@@ -45,6 +47,7 @@ namespace BDELog.Controllers
             return View(bdpfCell);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: BdpfCells/Create
         public IActionResult Create()
         {
@@ -69,6 +72,7 @@ namespace BDELog.Controllers
             return View(bdpfCell);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: BdpfCells/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -123,6 +127,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfCells/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

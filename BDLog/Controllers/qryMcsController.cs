@@ -1,6 +1,7 @@
 ﻿using BDELog.Contexts;
 using BDELog.Models;
 using BDELog.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace BDELog.Controllers
 {
+    [Authorize]
     public class qryMcsController : Controller
 
     {
@@ -52,7 +54,7 @@ namespace BDELog.Controllers
             return View(mcs);
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["McCell"] = new SelectList(_context.BdpfCells, "CellId", "CellName");
@@ -76,6 +78,7 @@ namespace BDELog.Controllers
             return View(bdpfMc);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: HomeController1/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -132,6 +135,7 @@ namespace BDELog.Controllers
             return View(bdpfMc);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: HomeController1/Delete/5
         public async Task<IActionResult> Delete(decimal? id)
         {

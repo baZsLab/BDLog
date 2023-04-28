@@ -1,8 +1,73 @@
-﻿@{
+﻿@model IEnumerable<BDELog.Models.BdpfBlog>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .simple {
+  width: 500px;
+  border: red;
+  margin: 20px auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.cnt{
+    padding: 1rem;
+}
+.container-sm{
+    border: 2px;
+    border-color: #4d4d4d;
+    border-top-style: solid;
+    border-left-style: solid;
+    margin-bottom: 3rem;
+}
+.date{
+    text-align: right;
+}
+
+.blogpost{
+        white-space: pre-wrap;
+        text-align: left;
+}
+
+</style>
+
+
+    
+<div class="container shadow min-vh-20 w-50 py-2">
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <div class="container-sm">
+                <div class="row">
+                    <div class="col-sm">
+                        <h2>
+                            @item.BlogTitle
+                        </h2>
+                    </div>
+                </div>
+                <div class="row blogpost cnt">@item.BlogTxt</div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        @item.BlogAuthorNavigation.Username
+                    </div>
+                    <div class="col-sm-6 date">
+                        @item.BlogDate
+                    </div>
+                </div>
+            </div>
+            }
+
+        }
+
+    
+
 </div>
+
+
+
+

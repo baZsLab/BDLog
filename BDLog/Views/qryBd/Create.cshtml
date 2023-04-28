@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Új rekord</h1>
 
-<h4>BdpfBdpfma</h4>
+<h4>BD Log</h4>
 <hr />
 <div class="row">
     <div class="mx-auto col-10 col-md-8 col-lg-10">
@@ -217,34 +217,27 @@
                     <span asp-validation-for="BdFaultdesc" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">Ellenintézkedés megtörtént</label>
-@*                <select asp-for="BdContmeas" class="form-control" asp-items="ViewBag.BdContmeas"></select>
-*@
-                <section class="btn-group btn-group-sm form-control-plaintext" id="BdContmeas">
-                    @{
-                        var contstr = "";
-                    }
-                    @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdContmeas"])
-                    {
-                        contstr = "contmeasno" + item.Value;
-                        @Html.RadioButtonFor(Model=>Model.BdContmeas,item.Value, new{id=contstr, @class="btn-check" } )
-                        <label class="btn btn-outline-secondary"
-                           for="@contstr">
-                            @item.Text
-                        </label>
-                    }
-                </section>
-
-
-
-            </div>
-            <div class="form-group">
-                <label class="control-label">Intézkedés/Hibaelhárítás leírása</label>
-                <input asp-for="BdContmeasdesc" class="form-control" />
-                <span asp-validation-for="BdContmeasdesc" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
+            <div class="row">
+                <div class="form-group col-lg-3">
+                    <label class="control-label">Ellenintézkedés megtörtént</label>
+                    @*                <select asp-for="BdContmeas" class="form-control" asp-items="ViewBag.BdContmeas"></select>
+                    *@
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdContmeas">
+                        @{
+                            var contstr = "";
+                        }
+                        @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdContmeas"])
+                        {
+                            contstr = "contmeasno" + item.Value;
+                            @Html.RadioButtonFor(Model=>Model.BdContmeas,item.Value, new{id=contstr, @class="btn-check" } )
+                            <label class="btn btn-outline-secondary"
+                               for="@contstr">
+                                @item.Text
+                            </label>
+                        }
+                    </section>
+                </div>
+                <div class="form-group form-check col-lg-2">
                 <label class="form-check-label">Kell IDA?
 @*                    <input class="form-check-input" asp-for="BdAnalysis" /> @Html.DisplayNameFor(model => model.BdAnalysis)
 *@                </label>
@@ -262,7 +255,7 @@
                 </section>
                 <span asp-validation-for="BdIdaneed" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+                <div class="form-group form-check col-lg-2">
                 <label class="form-check-label">Sztenderd módosult?
 @*                    <input class="form-check-input" asp-for="BdStandard" /> @Html.DisplayNameFor(model => model.BdStandard)
 *@                </label>
@@ -281,7 +274,15 @@
                 </section>
                 <span asp-validation-for="BdStandard" class="text-danger"></span>
 
+                </div>
+
+                <div class="form-group  col-lg-5">
+                    <label class="control-label">Intézkedés/Hibaelhárítás leírása</label>
+                    <input asp-for="BdContmeasdesc" class="form-control" />
+                    <span asp-validation-for="BdContmeasdesc" class="text-danger"></span>
+                </div>
             </div>
+
             <div class="form-group">
                 <label  class="control-label">Megjegyzés</label>
                 <input asp-for="BdAddinfo" class="form-control" />
@@ -312,14 +313,14 @@
                 </label>
             </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Létrehozás" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Vissza az összesítőre</a>
 </div>
 
 @section Scripts {
