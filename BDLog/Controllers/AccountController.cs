@@ -36,7 +36,7 @@ namespace BDELog.Controllers
             //var username = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
             var sss = User.Identity.Name;
             var username = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
-            username = "fos";
+           
             var user = await _userManager.FindByNameAsync(username);
             if (user != null)
             {
