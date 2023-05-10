@@ -9,6 +9,7 @@ using System;
 
 namespace BDELog.Controllers
 {
+    
     public class AccountController : Controller
     {
 
@@ -31,20 +32,66 @@ namespace BDELog.Controllers
 
         public async Task<IActionResult> CheckUserExist()
             {
-            //string asd = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-            //asd = asd.Split('\\')[1];
-            //var username = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
-            var sss = User.Identity.Name;
-            var username = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
+            AccountLogin acclog = new AccountLogin();
+            AccountReg accreg = new AccountReg();
+            var UserName = User.Identity.Name.Split('\\')[1]; ;
+            //var username = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
            
-            var user = await _userManager.FindByNameAsync(username);
+            var user = await _userManager.FindByNameAsync(UserName);
             if (user != null)
             {
-                return RedirectToAction("Login");
+                //return RedirectToAction("Login");
+                var username = acclog.UserName;
+                var password = "@Thispassword7";
+
+                string domainUser = UserName;
+
+                acclog.FullUserName = username;
+                acclog.UserName = domainUser;
+                //model.Email = domainUser + "@bridgestone.eu";
+                acclog.Password = password;
+                acclog.RememberMe = true;
+
+                if (ModelState.IsValid)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(acclog.UserName, acclog.Password, acclog.RememberMe, false);
+                }
+
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                return RedirectToAction("Register");
+                var username = User.Identity.Name;
+                var password = "@Thispassword7";
+
+                string domainUser = UserName;
+
+                accreg.FullUserName = username;
+                accreg.UserName = domainUser;
+                accreg.Email = domainUser + "@bridgestone.eu";
+                accreg.Password = password;
+
+                if (ModelState.IsValid)
+                {
+
+                    var newuser = new ApplicationUser
+                    {
+                        FullUser = accreg.FullUserName,
+                        UserName = accreg.UserName,
+                        Email = accreg.Email,
+                    };
+
+                    var result = await _userManager.CreateAsync(newuser, accreg.Password);
+
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(newuser, isPersistent: false);
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
+
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -59,9 +106,6 @@ namespace BDELog.Controllers
             var username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             var password = "@Thispassword7";
 
-            //string domainUser = Regex.Replace("domain\\user", ".*\\\\(.*)", "$1", RegexOptions.None);
-
-            //username = "dummydomain\\istvan.szabo2";
             string domainUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
             var sss = User.Identity.Name;
             model.FullUserName = username;

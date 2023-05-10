@@ -7,154 +7,338 @@
 
 <h1>Edit</h1>
 
-<h4>BdpfBdpfma</h4>
+<h4>BD Log</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="mx-auto col-10 col-md-8 col-lg-10">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BdId" />
-            <div class="form-group">
-                <label asp-for="BdSub" class="control-label"></label>
-                <select asp-for="BdSub" class="form-control" asp-items="ViewBag.BdSub"></select>
+            <input type="hidden" asp-for="BdCreatedby" />
+            <input type="hidden" asp-for="BdCreateddate" />
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    <label>Terület</label>
+                    <select class="form-control form-select" id="drpArea">
+                        <option>--Válassz területet--</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Cella</label>
+                    <select id="drpCell" class="form-control form-select">
+                        <option>--Válassz cellát--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Gép</label>
+                    <select id="drpMc" class="form-control form-select">
+                        <option>--Válassz gépet--</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Gépegység</label>
+                    <select id="drpUnit" class="form-control form-select">
+                        <option>--Válassz gépegységet--</option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group col-lg-4">
+                    <label asp-for="BdSub" class="control-label">Gép alegység</label>
+                    <select asp-for="BdSub" class="form-control form-select" asp-items="ViewBag.BdSub" id="drpSub"></select>
+                    <span asp-validation-for="BdSub" class="text-danger"></span>
+                </div>
+
+                @*<div class="form-group col-lg-4">
+                <label class="control-label">Gép alegység</label>
+                <select id="drpSub" asp-for="BdSub" class="form-control form-select">
+                    <option>--Válassz gépalegységet--</option>
+                </select>
                 <span asp-validation-for="BdSub" class="text-danger"></span>
+            </div>*@
             </div>
+            <br />
+            <br />
+
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Állásidő kezdete</label>
+                    <input asp-for="BdStartdate" id="startdate" class="form-control" placeholder="Mikor kezdődött?" required />
+                    <span asp-validation-for="BdStartdate" class="text-danger"></span>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Állásidő vége</label>
+                    <input asp-for="BdStopdate" id="enddate" class="form-control" placeholder="Mikor fejeződött be?" />
+                    <span asp-validation-for="BdStopdate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Állásidő (perc)</label>
+                    <input type="text" id="result" name="result" class="form-control" placeholder="Automatán kiszámolódik" readonly />
+
+                    <script>
+                        function calculate() {
+                            var start = new Date(document.getElementById("startdate").value);
+                            var end = new Date(document.getElementById("enddate").value);
+                            if (start && end) {
+
+                                var diffInMs = (end - start);
+
+                                var diffInMin = Math.floor((diffInMs / 1000) / 60);
+                                document.getElementById("result").value = diffInMin;
+                            }
+                        }
+                        document.getElementById("startdate").addEventListener("change", calculate);
+                        document.getElementById("enddate").addEventListener("change", calculate);
+                    </script>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Operátor</label>
+                    <select asp-for="BdOp" class="form-control form-select" asp-items="ViewBag.BdOp">
+                        <option>--Válassz operátort--</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Karbantartó</label>
+                    <select asp-for="BdMaint" class="form-control form-select" asp-items="ViewBag.BdMaint">
+                        <option>--Válassz karbantartót--</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Papír volt töltve</label>
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdPaper">
+                        @{
+                            var paperstr = "";
+                        }
+                        @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdPaperok"])
+                        {
+                            paperstr = "paperno" + item.Value;
+                            @Html.RadioButtonFor(Model => Model.BdPaperok, item.Value, new { id = paperstr, @class = "btn-check" })
+
+                            <label class="btn btn-outline-secondary"
+                                   for="@paperstr">
+                                @item.Text
+                            </label>
+                        }
+                    </section>
+                    <span asp-validation-for="BdPaperok" class="text-danger"></span>
+
+                </div>
+
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Elektromos/Gépész</label>
+                    <select asp-for="BdEm" class="form-control form-select" asp-items="ViewBag.BdEm"></select>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">M2P száma</label>
+                    <input asp-for="BdM2p" class="form-control" placeholder="Kérlek írd be az M2P hívás számát" />
+                    <span asp-validation-for="BdM2p" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-2">
+                    <label class="control-label">Hiba típusa</label>
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdFault">
+                        @{var faultstr = "";}
+                        @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdFault"])
+                        {
+                            faultstr = "faultno" + item.Value;
+                            @Html.RadioButtonFor(Model => Model.BdFault, item.Value, new { id = faultstr, @class = "btn-check" })
+                            <label class="btn btn-outline-secondary"
+                                   for="@faultstr">
+                                @item.Text
+                            </label>
+                        }
+                    </section>
+                    <span asp-validation-for="BdFault" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-check col-lg-2">
+                    <label class="control-label">Ismétlődő hiba</label>
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdRepeat">
+                        @Html.RadioButtonFor(model => model.BdRepeat, "false", new { id = "repeatFalse", @class = "btn-check", @checked = Model.BdRepeat == false ? "checked" : "" })
+                        <label class="btn btn-outline-secondary" for="repeatFalse">
+                            Nem
+                        </label>
+                        @Html.RadioButtonFor(model => model.BdRepeat, "true", new { id = "repeatTrue", @class = "btn-check", @checked = Model.BdRepeat == true ? "checked" : "" })
+                        <label class="btn btn-outline-secondary" for="repeatTrue">
+                            Igen
+                        </label>
+                    </section>
+                    <span asp-validation-for="BdRepeat" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Kár kód</label>
+                    <select asp-for="BdDmg" class="form-control form-select" asp-items="ViewBag.BdDmg">
+                        <option>--Válassz kár kódot--</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Ok kód</label>
+                    <select asp-for="BdCuz" class="form-control form-select" asp-items="ViewBag.BdCuz">
+                        <option>--Válassz ok kódot--</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Ellenintézkedés kód</label>
+                    <select asp-for="BdCont" class="form-control form-select" asp-items="ViewBag.BdCont">
+                        <option>--Válassz Ellenintézkedés kódot--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Cserélt alkatrész</label>
+                    <input asp-for="BdPart" class="form-control" placeholder="Milyen alkatrész volt cserélve?" />
+                    <span asp-validation-for="BdPart" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Alkatrész ára</label>
+                    <div class="input-group">
+                        <input asp-for="BdCost" class="form-control" placeholder="Mennyibe került az alkatrész?" />
+                        <div class="input-group-text">HUF</div>
+                    </div>
+                    <span asp-validation-for="BdCost" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Hiba Jellege</label>
+                    <input asp-for="BdFaultdesc" class="form-control" placeholder="Rövid leírás a hibáról" />
+                    <span asp-validation-for="BdFaultdesc" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-3">
+                    <label class="control-label">Ellenintézkedés megtörtént</label>
+                    @*                <select asp-for="BdContmeas" class="form-control" asp-items="ViewBag.BdContmeas"></select>
+                    *@
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdContmeas">
+                        @{
+                            var contstr = "";
+                        }
+                        @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdContmeas"])
+                        {
+                            contstr = "contmeasno" + item.Value;
+                            @Html.RadioButtonFor(Model => Model.BdContmeas, item.Value, new { id = contstr, @class = "btn-check" })
+                            <label class="btn btn-outline-secondary"
+                                   for="@contstr">
+                                @item.Text
+                            </label>
+                        }
+                    </section>
+                </div>
+                <div class="form-group form-check col-lg-2">
+                    <label class="form-check-label">
+                        Kell IDA?
+                        @*                    <input class="form-check-input" asp-for="BdAnalysis" /> @Html.DisplayNameFor(model => model.BdAnalysis)
+                        *@
+                    </label>
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdIDA">
+                        @Html.RadioButtonFor(Model => Model.BdIdaneed, "false", new { id = "idaFalse", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="idaFalse">
+                            Nem
+                        </label>
+                        @Html.RadioButtonFor(Model => Model.BdIdaneed, "true", new { id = "idaTrue", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="idaTrue">
+                            Igen
+                        </label>
+                    </section>
+                    <span asp-validation-for="BdIdaneed" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check col-lg-2">
+                    <label class="form-check-label">
+                        Sztenderd módosult?
+                        @*                    <input class="form-check-input" asp-for="BdStandard" /> @Html.DisplayNameFor(model => model.BdStandard)
+                        *@
+                    </label>
+
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdStandard">
+                        @Html.RadioButtonFor(Model => Model.BdStandard, "false", new { id = "standardFalse", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="standardFalse">
+                            Nem
+                        </label>
+                        @Html.RadioButtonFor(Model => Model.BdStandard, "true", new { id = "standardTrue", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="standardTrue">
+                            Igen
+                        </label>
+                    </section>
+                    <span asp-validation-for="BdStandard" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group  col-lg-5">
+                    <label class="control-label">Intézkedés/Hibaelhárítás leírása</label>
+                    <input asp-for="BdContmeasdesc" class="form-control" />
+                    <span asp-validation-for="BdContmeasdesc" class="text-danger"></span>
+                </div>
+            </div>
+
             <div class="form-group">
-                <label asp-for="BdStartdate" class="control-label"></label>
-                <input asp-for="BdStartdate" class="form-control" />
-                <span asp-validation-for="BdStartdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdStopdate" class="control-label"></label>
-                <input asp-for="BdStopdate" class="form-control" />
-                <span asp-validation-for="BdStopdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdFault" class="control-label"></label>
-                <select asp-for="BdFault" class="form-control" asp-items="ViewBag.BdFault"></select>
-                <span asp-validation-for="BdFault" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdOp" class="control-label"></label>
-                <select asp-for="BdOp" class="form-control" asp-items="ViewBag.BdOp"></select>
-                <span asp-validation-for="BdOp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdMaint" class="control-label"></label>
-                <select asp-for="BdMaint" class="form-control" asp-items="ViewBag.BdMaint"></select>
-                <span asp-validation-for="BdMaint" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdEm" class="control-label"></label>
-                <select asp-for="BdEm" class="form-control" asp-items="ViewBag.BdEm"></select>
-                <span asp-validation-for="BdEm" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdM2p" class="control-label"></label>
-                <input asp-for="BdM2p" class="form-control" />
-                <span asp-validation-for="BdM2p" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdDmg" class="control-label"></label>
-                <select asp-for="BdDmg" class="form-control" asp-items="ViewBag.BdDmg"></select>
-                <span asp-validation-for="BdDmg" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdCuz" class="control-label"></label>
-                <select asp-for="BdCuz" class="form-control" asp-items="ViewBag.BdCuz"></select>
-                <span asp-validation-for="BdCuz" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdCont" class="control-label"></label>
-                <select asp-for="BdCont" class="form-control" asp-items="ViewBag.BdCont"></select>
-                <span asp-validation-for="BdCont" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdPart" class="control-label"></label>
-                <input asp-for="BdPart" class="form-control" />
-                <span asp-validation-for="BdPart" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdCost" class="control-label"></label>
-                <input asp-for="BdCost" class="form-control" />
-                <span asp-validation-for="BdCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdFaultdesc" class="control-label"></label>
-                <input asp-for="BdFaultdesc" class="form-control" />
-                <span asp-validation-for="BdFaultdesc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdContmeas" class="control-label"></label>
-                <select asp-for="BdContmeas" class="form-control" asp-items="ViewBag.BdContmeas"></select>
-                <span asp-validation-for="BdContmeas" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdContmeasdesc" class="control-label"></label>
-                <input asp-for="BdContmeasdesc" class="form-control" />
-                <span asp-validation-for="BdContmeasdesc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdPaperok" class="control-label"></label>
-                <select asp-for="BdPaperok" class="form-control" asp-items="ViewBag.BdPaperok"></select>
-                <span asp-validation-for="BdPaperok" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BdStandard" /> @Html.DisplayNameFor(model => model.BdStandard)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdAddinfo" class="control-label"></label>
+                <label class="control-label">Megjegyzés</label>
                 <input asp-for="BdAddinfo" class="form-control" />
                 <span asp-validation-for="BdAddinfo" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BdIdaneed" /> @Html.DisplayNameFor(model => model.BdIdaneed)
-                </label>
-            </div>
+
+            @*           <div class="form-group">
+            <label asp-for="BdCreatedby" class="control-label"></label>
+            <select asp-for="BdCreatedby" class ="form-control" asp-items="ViewBag.BdCreatedby"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="BdCreateddate" class="control-label"></label>
+            <input asp-for="BdCreateddate" class="form-control" />
+            <span asp-validation-for="BdCreateddate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BdModifiedby" class="control-label"></label>
+            <select asp-for="BdModifiedby" class ="form-control" asp-items="ViewBag.BdModifiedby"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="BdModifieddate" class="control-label"></label>
+            <input asp-for="BdModifieddate" class="form-control" />
+            <span asp-validation-for="BdModifieddate" class="text-danger"></span>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="BdInactive" /> @Html.DisplayNameFor(model => model.BdInactive)
+            </label>
+        </div>*@
             <div class="form-group">
-                <label asp-for="BdCreatedby" class="control-label"></label>
-                <select asp-for="BdCreatedby" class="form-control" asp-items="ViewBag.BdCreatedby"></select>
-                <span asp-validation-for="BdCreatedby" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdCreateddate" class="control-label"></label>
-                <input asp-for="BdCreateddate" class="form-control" />
-                <span asp-validation-for="BdCreateddate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdModifiedby" class="control-label"></label>
-                <select asp-for="BdModifiedby" class="form-control" asp-items="ViewBag.BdModifiedby"></select>
-                <span asp-validation-for="BdModifiedby" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdModifieddate" class="control-label"></label>
-                <input asp-for="BdModifieddate" class="form-control" />
-                <span asp-validation-for="BdModifieddate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BdInactive" /> @Html.DisplayNameFor(model => model.BdInactive)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BdRepeat" /> @Html.DisplayNameFor(model => model.BdRepeat)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Módosítás" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Vissza az összesítőre</a>
 </div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/bddrpcreate.js"></script>

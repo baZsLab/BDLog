@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace BDELog
 {
@@ -35,14 +37,14 @@ namespace BDELog
 
             //services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>>();
 
+            services.AddHttpContextAccessor();
 
+            //services.AddDataProtection();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddDefaultTokenProviders()
                 .AddRoles<IdentityRole<int>>()
                 .AddEntityFrameworkStores<Auth_Context>();
-
-
 
 
             services.AddSwaggerGen(c=>
@@ -68,6 +70,15 @@ namespace BDELog
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            var supportedCultures = new[] { new CultureInfo("hu-HU") };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("hu-HU"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
 
             app.UseRouting();
 

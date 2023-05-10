@@ -24,6 +24,12 @@ namespace BDELog.Models
         public bool? IdaEnded { get; set; }
         [Column("IDA_ENDDATE", TypeName = "DATE")]
         public DateTime? IdaEnddate { get; set; }
+        [Column("IDA_NO")]
+        [StringLength(20)]
+        public string IdaNo { get; set; }
+        [Column("IDA_DESC")]
+        [StringLength(1000)]
+        public string IdaDesc { get; set; }
 
         [ForeignKey(nameof(IdaBd))]
         [InverseProperty(nameof(BdpfBdpfma.BdpfIda))]

@@ -1,0 +1,65 @@
+﻿@model BDELog.Models.BdpfIdum
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>BdpfIdum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdaId" />
+            <div class="form-group">
+                <label asp-for="IdaBd" class="control-label"></label>
+                <select asp-for="IdaBd" class="form-control" asp-items="ViewBag.IdaBd"></select>
+                <span asp-validation-for="IdaBd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdaStarted" class="control-label"></label>
+                <input asp-for="IdaStarted" class="form-control" />
+                <span asp-validation-for="IdaStarted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdaStartdate" class="control-label"></label>
+                <input asp-for="IdaStartdate" class="form-control" />
+                <span asp-validation-for="IdaStartdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdaEnded" class="control-label"></label>
+                <input asp-for="IdaEnded" class="form-control" />
+                <span asp-validation-for="IdaEnded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdaEnddate" class="control-label"></label>
+                <input asp-for="IdaEnddate" class="form-control" />
+                <span asp-validation-for="IdaEnddate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdaNo" class="control-label"></label>
+                <input asp-for="IdaNo" class="form-control" />
+                <span asp-validation-for="IdaNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdaDesc" class="control-label"></label>
+                <input asp-for="IdaDesc" class="form-control" />
+                <span asp-validation-for="IdaDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -46,63 +46,8 @@ namespace BDELog.BIControllers
             return bdpfBdpfma;
         }
 
-        // PUT: api/BIBdpfma/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBdpfBdpfma(long id, BdpfBdpfma bdpfBdpfma)
-        {
-            if (id != bdpfBdpfma.BdId)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(bdpfBdpfma).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BdpfBdpfmaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/BIBdpfma
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<BdpfBdpfma>> PostBdpfBdpfma(BdpfBdpfma bdpfBdpfma)
-        {
-            _context.BdpfBdpfmas.Add(bdpfBdpfma);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBdpfBdpfma", new { id = bdpfBdpfma.BdId }, bdpfBdpfma);
-        }
-
-        // DELETE: api/BIBdpfma/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBdpfBdpfma(long id)
-        {
-            var bdpfBdpfma = await _context.BdpfBdpfmas.FindAsync(id);
-            if (bdpfBdpfma == null)
-            {
-                return NotFound();
-            }
-
-            _context.BdpfBdpfmas.Remove(bdpfBdpfma);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
 
         private bool BdpfBdpfmaExists(long id)
         {

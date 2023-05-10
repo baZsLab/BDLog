@@ -1,6 +1,7 @@
 ﻿using BDELog.Contexts;
 using BDELog.Models;
 using BDELog.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace BDELog.Controllers
 {
+    [Authorize]
     public class ManageUsersController : Controller
     {
 
@@ -42,6 +44,7 @@ namespace BDELog.Controllers
 
             return View(users);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["Roleid"] = new SelectList(_context.BRoles, "Id", "Name");

@@ -63,8 +63,8 @@ namespace BDELog.Repo
                               BdPart= bd.BdPart,//
                               BdCost= bd.BdCost,//
                               BdFaultdesc= bd.BdFaultdesc,//
-                              BdContmeas= conmes.ContmeasName,//
-                              BdContmeasdesc= bd.BdContmeasdesc,//
+                              BdContmeas = conmes.ContmeasName,//
+                              BdContmeasdesc = bd.BdContmeasdesc,//
                               BdPaperok= pa.PaperName,//
                               BdStandard= bd.BdStandard,//
                               BdAddinfo= bd.BdAddinfo,//

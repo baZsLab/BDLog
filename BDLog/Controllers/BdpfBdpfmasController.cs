@@ -22,7 +22,8 @@ namespace BDELog.Controllers
         // GET: BdpfBdpfmas
         public async Task<IActionResult> Index()
         {
-            var bD_Context = _context.BdpfBdpfmas.Include(b => b.BdContNavigation).Include(b => b.BdContmeasNavigation).Include(b => b.BdCreatedbyNavigation).Include(b => b.BdCuzNavigation).Include(b => b.BdDmgNavigation).Include(b => b.BdEmNavigation).Include(b => b.BdFaultNavigation).Include(b => b.BdMaintNavigation).Include(b => b.BdModifiedbyNavigation).Include(b => b.BdOpNavigation).Include(b => b.BdPaperokNavigation).Include(b => b.BdSubNavigation);
+            //var bD_Context = _context.BdpfBdpfmas.Include(b => b.BdContNavigation).Include(b => b.BdContmeasNavigation).Include(b => b.BdCreatedbyNavigation).Include(b => b.BdCuzNavigation).Include(b => b.BdDmgNavigation).Include(b => b.BdEmNavigation).Include(b => b.BdFaultNavigation).Include(b => b.BdMaintNavigation).Include(b => b.BdModifiedbyNavigation).Include(b => b.BdOpNavigation).Include(b => b.BdPaperokNavigation).Include(b => b.BdSubNavigation);
+            var bD_Context = _context.BdpfBdpfmas.Include(b => b.BdContNavigation).Include(b => b.BdCreatedbyNavigation).Include(b => b.BdCuzNavigation).Include(b => b.BdDmgNavigation).Include(b => b.BdEmNavigation).Include(b => b.BdFaultNavigation).Include(b => b.BdMaintNavigation).Include(b => b.BdModifiedbyNavigation).Include(b => b.BdOpNavigation).Include(b => b.BdPaperokNavigation).Include(b => b.BdSubNavigation);
 
             return View(await bD_Context.ToListAsync());
         }
@@ -37,7 +38,7 @@ namespace BDELog.Controllers
 
             var bdpfBdpfma = await _context.BdpfBdpfmas
                 .Include(b => b.BdContNavigation)
-                //.Include(b => b.BdContmeasNavigation)
+                .Include(b => b.BdContmeasNavigation)
                 .Include(b => b.BdCreatedbyNavigation)
                 .Include(b => b.BdCuzNavigation)
                 .Include(b => b.BdDmgNavigation)

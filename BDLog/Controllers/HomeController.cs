@@ -1,6 +1,7 @@
 ﻿using BDELog.Contexts;
 using BDELog.Models;
 using BDELog.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace BDELog.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -94,7 +96,7 @@ namespace BDELog.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();

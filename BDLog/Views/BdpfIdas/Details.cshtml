@@ -1,0 +1,61 @@
+﻿@model BDELog.Models.BdpfIdum
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BdpfIdum</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdaStarted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdaStarted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdaStartdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdaStartdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdaEnded)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdaEnded)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdaEnddate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdaEnddate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdaNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdaNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdaDesc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdaDesc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdaBdNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdaBdNavigation.BdId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

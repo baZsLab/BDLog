@@ -23,8 +23,14 @@ namespace BDELog.BIControllers
 
         // GET: api/BIMcunits
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BdpfMcunit>>> GetBdpfMcunits()
+        public async Task<ActionResult<IEnumerable<BdpfMcunit>>> GetBdpfMcunits(int? unitmc)
         {
+            var items = await _context.BdpfMcunits.ToListAsync();
+            if (unitmc.HasValue)
+            {
+                var item = items.Where(i => i.UnitMc == unitmc.Value);
+                return item.ToList();
+            }
             return await _context.BdpfMcunits.ToListAsync();
         }
 

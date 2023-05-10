@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
+<link href="~/select2-bootstrap-5-theme/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+
+
 <h1>Új rekord</h1>
 
 <h4>BD Log</h4>
@@ -14,13 +18,13 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
-                <div class="form-group col-lg-6" >
+                <div class="form-group col-lg-6">
                     <label>Terület</label>
                     <select class="form-control form-select" id="drpArea">
                         <option>--Válassz területet--</option>
                     </select>
                 </div>
-            
+
                 <div class="form-group col-lg-6">
                     <label class="control-label">Cella</label>
                     <select id="drpCell" class="form-control form-select">
@@ -34,7 +38,7 @@
                     <select id="drpMc" class="form-control form-select">
                         <option>--Válassz gépet--</option>
                     </select>
-               </div>
+                </div>
 
                 <div class="form-group col-lg-4">
                     <label class="control-label">Gépegység</label>
@@ -43,11 +47,11 @@
                     </select>
                 </div>
 
-            
- @*               <div class="form-group col-lg-4">
-                    <label asp-for="BdSub" class="control-labell"></label>
-                    <select asp-for="BdSub" id="drpSub" class="form-control form-select" asp-items="ViewBag.BdSub" ></select>
-                </div>*@
+
+                @*               <div class="form-group col-lg-4">
+                        <label asp-for="BdSub" class="control-labell"></label>
+                        <select asp-for="BdSub" id="drpSub" class="form-control form-select" asp-items="ViewBag.BdSub" ></select>
+                    </div>*@
 
                 <div class="form-group col-lg-4">
                     <label class="control-label">Gép alegység</label>
@@ -55,34 +59,36 @@
                         <option>--Válassz gépalegységet--</option>
                     </select>
                     <span asp-validation-for="BdSub" class="text-danger"></span>
-                </div>                              
+                </div>
             </div>
             <br />
-            <br/>
+            <br />
 
             <div class="row">
                 <div class="form-group col-lg-4">
                     <label class="control-label">Állásidő kezdete</label>
-                    <input asp-for="BdStartdate" id="startdate" class="form-control" placeholder="Mikor kezdődött?" required/>
+                    <input asp-for="BdStartdate" id="startdate" class="form-control" placeholder="Mikor kezdődött?" required />
                     <span asp-validation-for="BdStartdate" class="text-danger"></span>
                     <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
+
+
                 <div class="form-group col-lg-4">
                     <label class="control-label">Állásidő vége</label>
                     <input asp-for="BdStopdate" id="enddate" class="form-control" placeholder="Mikor fejeződött be?" />
                     <span asp-validation-for="BdStopdate" class="text-danger"></span>
                 </div>
 
-                <div class="form-group col-lg-4">                
-                    <label  class="control-label">Állásidő (perc)</label>
-                    <input type="text" id="result" name="result" class="form-control" placeholder="Automatán kiszámolódik" readonly/>
+                <div class="form-group col-lg-4">
+                    <label class="control-label">Állásidő (perc)</label>
+                    <input type="text" id="result" name="result" class="form-control" placeholder="Automatán kiszámolódik" readonly />
 
                     <script>
                         function calculate() {
                             var start = new Date(document.getElementById("startdate").value);
                             var end = new Date(document.getElementById("enddate").value);
-                            if (start && end) { 
- 
+                            if (start && end) {
+
                                 var diffInMs = (end - start);
 
                                 var diffInMin = Math.floor((diffInMs / 1000) / 60);
@@ -94,17 +100,17 @@
                     </script>
                 </div>
             </div>
-  
+
             <div class="row">
                 <div class="form-group col-lg-4">
                     <label class="control-label">Operátor</label>
-                    <select asp-for="BdOp" class="form-control form-select" asp-items="ViewBag.BdOp">
-                        <option>--Válassz operátort--</option>
+                    <select asp-for="BdOp" class="form-control form-select" asp-items="ViewBag.BdOp" id="drpOp">
+@*                        <option>--Válassz operátort--</option>*@
                     </select>
                 </div>
                 <div class="form-group col-lg-4">
                     <label class="control-label">Karbantartó</label>
-                    <select asp-for="BdMaint" class="form-control form-select" asp-items="ViewBag.BdMaint">
+                    <select asp-for="BdMaint" class="form-control form-select" asp-items="ViewBag.BdMaint" id="drpMaint">
                         <option>--Válassz karbantartót--</option>
                     </select>
                 </div>
@@ -117,10 +123,10 @@
                         @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdPaperok"])
                         {
                             paperstr = "paperno" + item.Value;
-                            @Html.RadioButtonFor(Model=>Model.BdPaperok,item.Value, new{id=paperstr, @class="btn-check" } )
-                            
+                            @Html.RadioButtonFor(Model => Model.BdPaperok, item.Value, new { id = paperstr, @class = "btn-check" })
+
                             <label class="btn btn-outline-secondary"
-                               for="@paperstr">
+                                   for="@paperstr">
                                 @item.Text
                             </label>
                         }
@@ -139,7 +145,7 @@
                 </div>
                 <div class="form-group col-lg-4">
                     <label class="control-label">M2P száma</label>
-                    <input asp-for="BdM2p" class="form-control" placeholder="Kérlek írd be az M2P hívás számát"/>
+                    <input asp-for="BdM2p" class="form-control" placeholder="Kérlek írd be az M2P hívás számát" />
                     <span asp-validation-for="BdM2p" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-2">
@@ -149,9 +155,9 @@
                         @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdFault"])
                         {
                             faultstr = "faultno" + item.Value;
-                            @Html.RadioButtonFor(Model=>Model.BdFault,item.Value, new{id=faultstr, @class="btn-check" } )
+                            @Html.RadioButtonFor(Model => Model.BdFault, item.Value, new { id = faultstr, @class = "btn-check" })
                             <label class="btn btn-outline-secondary"
-                               for="@faultstr">
+                                   for="@faultstr">
                                 @item.Text
                             </label>
                         }
@@ -160,13 +166,13 @@
                 </div>
                 <div class="form-group form-check col-lg-2">
                     <label class="control-label">Ismétlődő hiba</label>
-                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdFault">
-                        @Html.RadioButtonFor(Model=>Model.BdRepeat,"false", new{id="repeatFalse", @class="btn-check" } )
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdRepeat">
+                        @Html.RadioButtonFor(Model => Model.BdRepeat, "false", new { id = "repeatFalse", @class = "btn-check" })
                         <label class="btn btn-outline-secondary"
                                for="repeatFalse">
                             Nem
                         </label>
-                        @Html.RadioButtonFor(Model=>Model.BdRepeat,"true", new{id="repeatTrue", @class="btn-check" } )
+                        @Html.RadioButtonFor(Model => Model.BdRepeat, "true", new { id = "repeatTrue", @class = "btn-check" })
                         <label class="btn btn-outline-secondary"
                                for="repeatTrue">
                             Igen
@@ -212,7 +218,7 @@
                     <span asp-validation-for="BdCost" class="text-danger"></span>
                 </div>
                 <div class="form-group col-lg-4">
-                    <label  class="control-label">Hiba Jellege</label>
+                    <label class="control-label">Hiba Jellege</label>
                     <input asp-for="BdFaultdesc" class="form-control" placeholder="Rövid leírás a hibáról" />
                     <span asp-validation-for="BdFaultdesc" class="text-danger"></span>
                 </div>
@@ -229,50 +235,54 @@
                         @foreach (SelectListItem item in (IEnumerable<SelectListItem>)ViewData["BdContmeas"])
                         {
                             contstr = "contmeasno" + item.Value;
-                            @Html.RadioButtonFor(Model=>Model.BdContmeas,item.Value, new{id=contstr, @class="btn-check" } )
+                            @Html.RadioButtonFor(Model => Model.BdContmeas, item.Value, new { id = contstr, @class = "btn-check" })
                             <label class="btn btn-outline-secondary"
-                               for="@contstr">
+                                   for="@contstr">
                                 @item.Text
                             </label>
                         }
                     </section>
                 </div>
                 <div class="form-group form-check col-lg-2">
-                <label class="form-check-label">Kell IDA?
-@*                    <input class="form-check-input" asp-for="BdAnalysis" /> @Html.DisplayNameFor(model => model.BdAnalysis)
-*@                </label>
-                <section class="btn-group btn-group-sm form-control-plaintext" id="BdIDA">
-                    @Html.RadioButtonFor(Model=>Model.BdIdaneed,"false", new{id="idaFalse", @class="btn-check" } )
-                    <label class="btn btn-outline-secondary"
-                           for="idaFalse">
-                        Nem
+                    <label class="form-check-label">
+                        Kell IDA?
+                        @*                    <input class="form-check-input" asp-for="BdAnalysis" /> @Html.DisplayNameFor(model => model.BdAnalysis)
+                        *@
                     </label>
-                    @Html.RadioButtonFor(Model=>Model.BdIdaneed,"true", new{id="idaTrue", @class="btn-check" } )
-                    <label class="btn btn-outline-secondary"
-                           for="idaTrue">
-                        Igen
-                    </label>
-                </section>
-                <span asp-validation-for="BdIdaneed" class="text-danger"></span>
-            </div>
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdIDA">
+                        @Html.RadioButtonFor(Model => Model.BdIdaneed, "false", new { id = "idaFalse", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="idaFalse">
+                            Nem
+                        </label>
+                        @Html.RadioButtonFor(Model => Model.BdIdaneed, "true", new { id = "idaTrue", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="idaTrue">
+                            Igen
+                        </label>
+                    </section>
+                    <span asp-validation-for="BdIdaneed" class="text-danger"></span>
+                </div>
                 <div class="form-group form-check col-lg-2">
-                <label class="form-check-label">Sztenderd módosult?
-@*                    <input class="form-check-input" asp-for="BdStandard" /> @Html.DisplayNameFor(model => model.BdStandard)
-*@                </label>
+                    <label class="form-check-label">
+                        Sztenderd módosult?
+                        @*                    <input class="form-check-input" asp-for="BdStandard" /> @Html.DisplayNameFor(model => model.BdStandard)
+                        *@
+                    </label>
 
-                <section class="btn-group btn-group-sm form-control-plaintext" id="BdStandard">
-                    @Html.RadioButtonFor(Model=>Model.BdStandard,"false", new{id="standardFalse", @class="btn-check" } )
-                    <label class="btn btn-outline-secondary"
-                           for="standardFalse">
-                        Nem
-                    </label>
-                    @Html.RadioButtonFor(Model=>Model.BdStandard,"true", new{id="standardTrue", @class="btn-check" } )
-                    <label class="btn btn-outline-secondary"
-                           for="standardTrue">
-                        Igen
-                    </label>
-                </section>
-                <span asp-validation-for="BdStandard" class="text-danger"></span>
+                    <section class="btn-group btn-group-sm form-control-plaintext" id="BdStandard">
+                        @Html.RadioButtonFor(Model => Model.BdStandard, "false", new { id = "standardFalse", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="standardFalse">
+                            Nem
+                        </label>
+                        @Html.RadioButtonFor(Model => Model.BdStandard, "true", new { id = "standardTrue", @class = "btn-check" })
+                        <label class="btn btn-outline-secondary"
+                               for="standardTrue">
+                            Igen
+                        </label>
+                    </section>
+                    <span asp-validation-for="BdStandard" class="text-danger"></span>
 
                 </div>
 
@@ -284,34 +294,11 @@
             </div>
 
             <div class="form-group">
-                <label  class="control-label">Megjegyzés</label>
+                <label class="control-label">Megjegyzés</label>
                 <input asp-for="BdAddinfo" class="form-control" />
                 <span asp-validation-for="BdAddinfo" class="text-danger"></span>
             </div>
 
- @*           <div class="form-group">
-                <label asp-for="BdCreatedby" class="control-label"></label>
-                <select asp-for="BdCreatedby" class ="form-control" asp-items="ViewBag.BdCreatedby"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdCreateddate" class="control-label"></label>
-                <input asp-for="BdCreateddate" class="form-control" />
-                <span asp-validation-for="BdCreateddate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdModifiedby" class="control-label"></label>
-                <select asp-for="BdModifiedby" class ="form-control" asp-items="ViewBag.BdModifiedby"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="BdModifieddate" class="control-label"></label>
-                <input asp-for="BdModifieddate" class="form-control" />
-                <span asp-validation-for="BdModifieddate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BdInactive" /> @Html.DisplayNameFor(model => model.BdInactive)
-                </label>
-            </div>*@
             <div class="form-group">
                 <input type="submit" value="Létrehozás" class="btn btn-primary" />
             </div>
@@ -323,9 +310,77 @@
     <a asp-action="Index">Vissza az összesítőre</a>
 </div>
 
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/lib/select2/js/select2.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#drpArea').select2({
+                placeholder: 'Keresés...',
+                allowClear: true,
+                selectOnClose: true,
+                width: '100%',
+                minimumInputLength: 0,
+                theme: 'bootstrap-5'
+            });
+            $('#drpCell').select2({
+                placeholder: 'Keresés...',
+                allowClear: true,
+                selectOnClose: true,
+                width: '100%',
+                minimumInputLength: 0,
+                theme: 'bootstrap-5'
+            });
+            $('#drpMc').select2({
+                placeholder: 'Keresés...',
+                allowClear: true,
+                selectOnClose: true,
+                width: '100%',
+                minimumInputLength: 0,
+                theme: 'bootstrap-5'
+            });
+            $('#drpUnit').select2({
+                placeholder: 'Keresés...',
+                allowClear: true,
+                selectOnClose: true,
+                width: '100%',
+                minimumInputLength: 0,
+                theme: 'bootstrap-5'
+            });
+            $('#drpSub').select2({
+                placeholder: 'Keresés...',
+                allowClear: true,
+                selectOnClose: true,
+                width: '100%',
+                minimumInputLength: 0,
+                theme: 'bootstrap-5'
+            });
+            $('#drpOp').select2({
+                placeholder: 'Keresés...',
+                allowClear: true,
+                width: '100%',
+                selectOnClose: true,
+                minimumInputLength: 0,
+                theme: 'bootstrap-5'
+            });
+            $('#drpMaint').select2({
+                placeholder: 'Keresés...',
+                allowClear: true,
+                selectOnClose: true,
+                width: '100%',
+                minimumInputLength: 0,
+                theme: 'bootstrap-5'
+            });
+        });
+    </script>
+
 }
+
+
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>

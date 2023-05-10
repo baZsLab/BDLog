@@ -1,0 +1,129 @@
+﻿@model IEnumerable<BDELog.Models.qryIda>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/table.css" rel="stylesheet" />
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="table-responsive text-nowrap">
+    <table class="table fl-table"
+           id="table"
+           data-url="api/biqryida"
+           data-show-export="true"
+           data-toggle="table"
+           data-sort-class="table-active"
+           data-sortable="true"
+           data-show-columns="true"
+           data-filter-control="true"
+           data-show-search-clear-button="true"
+           data-filter-control-multiple-search="true"
+           data-locale="hu-HU"
+           data-pagination="true">
+        <thead>
+            <tr>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="idaBd">
+                    bdID
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="idaId">
+                    ID
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="bdStartdate"
+                    data-formatter="dateFormat">
+                    Hiba kezdete
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="areaName">
+                    Terület
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="cellNoName">
+                    Cella
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="mcName">
+                    Gép
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="unitName">
+                    Gépegység
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="subName">
+                    Alegység
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="select"
+                    data-field="idaStarted">
+                    Elindítva
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="idaStartdate">
+                    Indítási dátum
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="select"
+                    data-field="idaEnded">
+                    Lezárva
+                </th>
+                <th data-sortable="true"
+                    data-filter-control="input"
+                    data-field="idaEnddate">
+                    Lezárási dátum
+                </th>
+                <th data-field="idaId"
+                    data-formatter="actionFormatter">
+                    Action
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('#table').bootstrapTable()
+    })
+</script>
+
+<script>
+    function actionFormatter(value, row) {
+        if (value == null) {
+            var number = row.idaBd
+            var link = $('<a>', {
+                href: '@Url.Action("Create", "BdpfIdas")' + '?bdnumber=' + number,
+                html: '<i class="bi bi-plus-circle"></i>', 
+            });
+            return link[0].outerHTML;
+        }
+        return '<a href="/bdpfidas/Edit/' + value + '"> <i class="bi bi-pen"></i></a> <a href="/bdpfidas/Details/' + value + '"> <i class="bi bi-info-circle"></i></a> <a href="/bdpfidas/Delete/' + value + '"><i class="bi bi-trash"></i> </a>'
+    };
+</script>
+<script>
+    function dateFormat(value, row, index) {
+        if (value == null) {
+            return;
+        }
+        return moment(value).format('YYYY.MM.DD HH:mm');
+    }
+</script>
+<script src="~/lib/moment.js/moment.min.js"></script>
+

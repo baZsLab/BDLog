@@ -24,19 +24,19 @@ $.fn.bootstrapTable.locales['hu-HU'] = $.fn.bootstrapTable.locales['hu'] = {
     return `Megjelenítve ${pageFrom} - ${pageTo} / ${totalRows} összesen`
   },
   formatSRPaginationPreText () {
-    return 'Előző oldal'
+    return 'previous page'
   },
   formatSRPaginationPageText (page) {
-    return ` ${page} oldalra`
+    return `to page ${page}`
   },
   formatSRPaginationNextText () {
-    return 'következő oldal'
+    return 'next page'
   },
   formatDetailPagination (totalRows) {
-    return `Oldalak száma: ${totalRows} sor`
+    return `Showing ${totalRows} rows`
   },
   formatClearSearch () {
-    return 'Keresés törlése'
+    return 'Clear Search'
   },
   formatSearch () {
     return 'Keresés'
@@ -48,55 +48,55 @@ $.fn.bootstrapTable.locales['hu-HU'] = $.fn.bootstrapTable.locales['hu'] = {
     return 'Lapozó elrejtése/megjelenítése'
   },
   formatPaginationSwitchDown () {
-    return 'Lapozó megjelenítése'
+    return 'Show pagination'
   },
   formatPaginationSwitchUp () {
-    return 'Lapozó elrejtése'
+    return 'Hide pagination'
   },
   formatRefresh () {
     return 'Frissítés'
   },
   formatToggleOn () {
-    return 'Kártya nézet megjelenítése'
+    return 'Show card view'
   },
   formatToggleOff () {
-    return 'Kártyanézet elrejtése'
+    return 'Hide card view'
   },
   formatColumns () {
     return 'Oszlopok'
   },
   formatColumnsToggleAll () {
-    return 'Összes kiválasztása'
+    return 'Toggle all'
   },
   formatFullscreen () {
-    return 'Teljesképernyő'
+    return 'Fullscreen'
   },
   formatAllRows () {
     return 'Összes'
   },
   formatAutoRefresh () {
-    return 'Auto frissítés'
+    return 'Auto Refresh'
   },
   formatExport () {
-    return 'Exportálás'
+    return 'Export data'
   },
   formatJumpTo () {
-    return 'Ugrás'
+    return 'GO'
   },
   formatAdvancedSearch () {
-    return 'Bővített keresés'
+    return 'Advanced search'
   },
   formatAdvancedCloseButton () {
-    return 'Bezárás'
+    return 'Close'
   },
   formatFilterControlSwitch () {
-    return 'Kontrol elrejtés/megjelenítés'
+    return 'Hide/Show controls'
   },
   formatFilterControlSwitchHide () {
-    return 'Kontrol elrejtése'
+    return 'Hide controls'
   },
   formatFilterControlSwitchShow () {
-    return 'Kontrol megjelenítése'
+    return 'Show controls'
   }
 }
 

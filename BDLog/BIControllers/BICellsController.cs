@@ -23,9 +23,17 @@ namespace BDELog.BIControllers
 
         // GET: api/BICells
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BdpfCell>>> GetBdpfCells()
+        public async Task<ActionResult<IEnumerable<BdpfCell>>> GetBdpfCells(int? cellarea)
         {
-            return await _context.BdpfCells.ToListAsync();
+            var response = await _context.BdpfCells.ToListAsync();
+            var items = response;
+            if (cellarea.HasValue) 
+            {
+                var item = items.Where(i => i.CellArea == cellarea.Value);
+                return item.ToList();
+            }
+
+            return items.ToList();
         }
 
         // GET: api/BICells/5

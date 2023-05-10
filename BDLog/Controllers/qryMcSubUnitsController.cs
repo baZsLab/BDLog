@@ -51,7 +51,7 @@ namespace BDELog.Controllers
         }
 
         // GET: BdpfMcsubunits/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Maintenance Developer")]
         public IActionResult Create()
         {
             ViewData["SubMcunit"] = new SelectList(_context.BdpfMcunits, "UnitId", "UnitName");

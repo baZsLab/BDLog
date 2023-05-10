@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BDELog.Contexts;
 using BDELog.Models;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace BDELog.BIControllers
 {
@@ -23,8 +24,17 @@ namespace BDELog.BIControllers
 
         // GET: api/BIMcs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BdpfMc>>> GetBdpfMcs()
+        public async Task<ActionResult<IEnumerable<BdpfMc>>> GetBdpfMcs(int? mccell)
         {
+            var response = await _context.BdpfMcs.ToListAsync();
+            var items = response;
+            if (mccell.HasValue)
+            {
+                var item = items.Where(i => i.McCell == mccell.Value);
+                return item.ToList();
+            }
+    
+  
             return await _context.BdpfMcs.ToListAsync();
         }
 

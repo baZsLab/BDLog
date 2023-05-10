@@ -13,157 +13,171 @@
 
 
 <style>
-    *{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
 
-    .search-input, .form-select {
-        font-size: 10px;
-        padding-top: 2px;
-        padding-bottom: 2px;
-    }
+        .search-input, .form-select {
+            font-size: 10px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
 
-body{
-    font-family: Helvetica;
-    -webkit-font-smoothing: antialiased;
-        background: #F8F8F8;
-}
-h2{
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: white;
-    padding: 30px 0;
-}
+        body {
+            font-family: Helvetica;
+            -webkit-font-smoothing: antialiased;
+            background: #F8F8F8;
+        }
 
-/* Table Styles */
+        h2 {
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+            padding: 30px 0;
+        }
 
-.table-wrapper{
-    margin: 10px 70px 70px;
-    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-}
+        /* Table Styles */
 
-.fl-table {
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none ;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
-}
+        .table-wrapper {
+            margin: 10px 70px 70px;
+            box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+        }
 
-.fl-table td, .fl-table th {
-    text-align: center;
-    padding: 8px;
-}
+        .fl-table {
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: normal;
+            border: none;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 100%;
+            white-space: nowrap;
+            background-color: white;
+        }
 
-.fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 12px;
-}
+            .fl-table td, .fl-table th {
+                text-align: center;
+                padding: 8px;
+            }
 
-.fl-table thead th {
-    color: #ffffff;
-    background: #4D4D4D;
-}
+            .fl-table td {
+                border-right: 1px solid #f8f8f8;
+                font-size: 12px;
+            }
+
+            .fl-table thead th {
+                color: #ffffff;
+                background: #4D4D4D;
+            }
 
 
-/*.fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #324960;
-}*/
+            /*.fl-table thead th:nth-child(odd) {
+        color: #ffffff;
+        background: #324960;
+    }*/
 
-.fl-table tr:nth-child(even) {
-    background: #F8F8F8;
-}
+            .fl-table tr:nth-child(even) {
+                background: #F8F8F8;
+            }
 
-/* Responsive */
+        /* Responsive */
 
-@@media (max-width: 767px) {
-    .fl-table {
-        display: block;
-        width: 100%;
-    }
-    .table-wrapper:before{
-        content: "Scroll horizontally >";
-        display: block;
-        text-align: right;
-        font-size: 11px;
-        color: white;
-        padding: 0 0 10px;
-    }
-    .fl-table thead, .fl-table tbody, .fl-table thead th {
-        display: block;
-    }
-    .fl-table thead th:last-child{
-        border-bottom: none;
-    }
-    .fl-table thead {
-        float: left;
-    }
-    .fl-table tbody {
-        width: auto;
-        position: relative;
-        overflow-x: auto;
-    }
-    .fl-table td, .fl-table th {
-        padding: 20px .625em .625em .625em;
-        height: 60px;
-        vertical-align: middle;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 120px;
-        font-size: 13px;
-        text-overflow: ellipsis;
-    }
-    .fl-table thead th {
-        text-align: left;
-        border-bottom: 1px solid #f7f7f9;
-    }
-    .fl-table tbody tr {
-        display: table-cell;
-    }
-    .fl-table tbody tr:nth-child(odd) {
-        background: none;
-    }
-    .fl-table tr:nth-child(even) {
-        background: transparent;
-    }
-    .fl-table tr td:nth-child(odd) {
-        background: #F8F8F8;
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tr td:nth-child(even) {
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tbody td {
-        display: block;
-        text-align: center;
-    }
-}
+        @@media (max-width: 767px) {
+            .fl-table {
+                display: block;
+                width: 100%;
+            }
+
+            .table-wrapper:before {
+                content: "Scroll horizontally >";
+                display: block;
+                text-align: right;
+                font-size: 11px;
+                color: white;
+                padding: 0 0 10px;
+            }
+
+            .fl-table thead, .fl-table tbody, .fl-table thead th {
+                display: block;
+            }
+
+                .fl-table thead th:last-child {
+                    border-bottom: none;
+                }
+
+            .fl-table thead {
+                float: left;
+            }
+
+            .fl-table tbody {
+                width: auto;
+                position: relative;
+                overflow-x: auto;
+            }
+
+            .fl-table td, .fl-table th {
+                padding: 20px .625em .625em .625em;
+                height: 60px;
+                vertical-align: middle;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                overflow-y: auto;
+                width: 120px;
+                font-size: 13px;
+                text-overflow: ellipsis;
+            }
+
+            .fl-table thead th {
+                text-align: left;
+                border-bottom: 1px solid #f7f7f9;
+            }
+
+            .fl-table tbody tr {
+                display: table-cell;
+            }
+
+                .fl-table tbody tr:nth-child(odd) {
+                    background: none;
+                }
+
+            .fl-table tr:nth-child(even) {
+                background: transparent;
+            }
+
+            .fl-table tr td:nth-child(odd) {
+                background: #F8F8F8;
+                border-right: 1px solid #E6E4E4;
+            }
+
+            .fl-table tr td:nth-child(even) {
+                border-right: 1px solid #E6E4E4;
+            }
+
+            .fl-table tbody td {
+                display: block;
+                text-align: center;
+            }
+        }
 </style>
 
 
 @*<div id="toolbar">
-    <div class="form-inline" role="form">
-        <div class="form-group">
-            <span>From Date </span>
-            <input name="date1" class="form-control w70" type="date">
+        <div class="form-inline" role="form">
+            <div class="form-group">
+                <span>From Date </span>
+                <input name="date1" class="form-control w70" type="date">
+            </div>
+            <div class="form-group">
+                <span>To Date </span>
+                <input name="date2" class="form-control w70" type="date">
+            </div>
+            <button id="ok" type="submit" class="btn btn-primary">OK</button>
         </div>
-        <div class="form-group">
-            <span>To Date </span>
-            <input name="date2" class="form-control w70" type="date">
-        </div>
-        <button id="ok" type="submit" class="btn btn-primary">OK</button>
     </div>
-</div>
 *@
 <div class="table-responsive text-nowrap">
     <table class="table fl-table"
@@ -190,12 +204,14 @@ h2{
                 </th>
                 <th data-sortable="true"
                     data-filter-control="input"
-                    data-field="bdStartdate">
+                    data-field="bdStartdate"
+                    data-formatter="dateFormat">
                     Hiba kezdete
                 </th>
                 <th data-sortable="true"
                     data-filter-control="input"
-                    data-field="bdStopdate">
+                    data-field="bdStopdate"
+                    data-formatter="dateFormat">
                     Hiba vége
                 </th>
                 <th data-sortable="true"
@@ -340,7 +356,8 @@ h2{
                 </th>
                 <th data-sortable="true"
                     data-filter-control="input"
-                    data-field="bdCreateddate">
+                    data-field="bdCreateddate"
+                    data-formatter="dateFormat">
                     Felvette idő
                 </th>
                 <th data-sortable="true"
@@ -350,14 +367,15 @@ h2{
                 </th>
                 <th data-sortable="true"
                     data-filter-control="input"
-                    data-field="bdModifieddate">
+                    data-field="bdModifieddate"
+                    data-formatter="dateFormat">
                     Módosította idő
                 </th>
                 <th data-field="bdId"
                     data-formatter="actionFormatter">
                     Action
                 </th>
-                
+
             </tr>
         </thead>
     </table>
@@ -375,31 +393,39 @@ h2{
         return '<a href="/qryBD/Edit/' + value + '"><i class="bi bi-pen"></i></a><a href="/qryBD/Details/' + value + '"><i class="bi bi-info-circle"></i></a><a href="/qryBD/Delete/' + value + '"><i class="bi bi-trash"></i></a>'
     };
 </script>
-
+<script>
+    function dateFormat(value, row, index) {
+        if (value == null) {
+            return;
+        }
+        return moment(value).format('YYYY.MM.DD HH:mm');
+    }
+</script>
+<script src="~/lib/moment.js/moment.min.js"></script>
 
 @*<script>
-    function getDates(startDate, stopDate) {
-        var dateArray = [];
-        var currentDate = moment(startDate);
-        var stopDate = moment(stopDate);
-        while (currentDate <= stopDate) {
-            dateArray.push(moment(currentDate).format('YYYY-MM-DD'))
-            currentDate = moment(currentDate).add(1, 'days');
+        function getDates(startDate, stopDate) {
+            var dateArray = [];
+            var currentDate = moment(startDate);
+            var stopDate = moment(stopDate);
+            while (currentDate <= stopDate) {
+                dateArray.push(moment(currentDate).format('YYYY-MM-DD'))
+                currentDate = moment(currentDate).add(1, 'days');
+            }
+            return dateArray;
         }
-        return dateArray;
-    }
 
 
-    $('#ok').click(function () {
+        $('#ok').click(function () {
 
-        var $table = $('#table')
-        var from = $("input[type=date][name=date1]").val();
-        var to = $("input[type=date][name=date2]").val();
-        $table.bootstrapTable('filterBy', { bdStartdate: getDates(from, to) })
+            var $table = $('#table')
+            var from = $("input[type=date][name=date1]").val();
+            var to = $("input[type=date][name=date2]").val();
+            $table.bootstrapTable('filterBy', { bdStartdate: getDates(from, to) })
 
 
 
-    })
-</script>
+        })
+    </script>
 *@
 
